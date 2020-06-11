@@ -1,14 +1,10 @@
 import 'internal/shadow_length.dart';
 
 enum _Madhab {
-  /**
-   * Shafi Madhab
-   */
+  /// Shafi Madhab
   shafi,
 
-  /**
-   * Hanafi Madhab
-   */
+  /// Hanafi Madhab
   hanafi
 }
 

@@ -7,3 +7,4 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 /libraries/Dart_SDK.xml
+/libraries/Dart_Packages.xml
