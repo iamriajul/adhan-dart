@@ -1,4 +1,4 @@
-import 'package:adhan_dart/adhan_dart.dart';
+import 'package:adhan/adhan.dart';
 
 void main() {
   var awesome = Awesome();

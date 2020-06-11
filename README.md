@@ -10,7 +10,7 @@ Please Follow [adhan-java](https://github.com/batoulapps/adhan-java) for Dart Ad
 A simple usage example:
 
 ```dart
-import 'package:adhan_dart/adhan_dart.dart';
+import 'package:adhan_dart/adhan.dart';
 
 main() {
   var awesome = new Awesome();
