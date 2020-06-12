@@ -1,24 +1,32 @@
-A library for Dart developers.
-
-Created from templates made available by Riajul under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
-
-Please Follow [adhan-java](https://github.com/batoulapps/adhan-java) for Dart Adoption Strategy.
-
 ## Usage
 
 A simple usage example:
 
 ```dart
-import 'package:adhan_dart/adhan.dart';
+import 'package:adhan/adhan.dart';
 
 main() {
-  var awesome = new Awesome();
+    final kushtia = Coordinates(23.9088, 89.1220);
+    final date = DateComponents(2020, 6, 12);
+    final params = CalculationMethod.karachi.getParameters();
+    params.madhab = Madhab.hanafi;
+    final prayerTimes = PrayerTimes(Duration(hours: 6), kushtia, date, params);
+  
+    print(DateFormat.jm().format(prayerTimes.fajr));
+    print(DateFormat.jm().format(prayerTimes.sunrise));
+    print(DateFormat.jm().format(prayerTimes.dhuhr));
+    print(DateFormat.jm().format(prayerTimes.asr));
+    print(DateFormat.jm().format(prayerTimes.maghrib));
+    print(DateFormat.jm().format(prayerTimes.isha));
 }
 ```
+
+## TODO
+1. add Qibla
+2. add SunnahTimes
 
 ## Features and bugs
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: http://example.com/issues/replaceme
+[tracker]: https://github.com/iamriajul/adhan-dart/issues
