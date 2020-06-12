@@ -6,7 +6,7 @@ class ShadowLength {
   ShadowLength._(this._shadowLength);
 
   core.double getShadowLength() {
-    return this._shadowLength;
+    return _shadowLength;
   }
 
   static ShadowLength get single => ShadowLength._(1.0);
