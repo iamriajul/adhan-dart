@@ -11,15 +11,18 @@ class SolarCoordinates {
   /// the rays of the Sun and the plane of the Earth's
   /// equator, in degrees.
   double _declination;
+  double get declination => _declination;
 
   ///  Right ascension of the Sun, the angular distance on the
   /// celestial equator from the vernal equinox to the hour circle,
   /// in degrees.
   double _rightAscension;
+  double get rightAscension => _rightAscension;
 
   ///  Apparent sidereal time, the hour angle of the vernal
   /// equinox, in degrees.
   double _apparentSiderealTime;
+  double get apparentSiderealTime => _apparentSiderealTime;
 
   SolarCoordinates(double julianDay) {
     final T = CalendricalHelper.julianCentury(julianDay);
@@ -50,9 +53,4 @@ class SolarCoordinates {
     _apparentSiderealTime = theta0 + (((deltaPsi * 3600) * cos(radians(epsilon0 + deltaEpsilon))) / 3600);
   }
 
-  double get declination => _declination;
-
-  double get rightAscension => _rightAscension;
-
-  double get apparentSiderealTime => _apparentSiderealTime;
 }
