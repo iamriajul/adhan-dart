@@ -11,6 +11,11 @@ enum _Madhab {
 class Madhab {
   final _Madhab _value;
 
+  @override
+  String toString() {
+    return _value.toString();
+  }
+
   Madhab._(this._value);
 
   static Madhab get shafi => Madhab._(_Madhab.shafi);

@@ -15,7 +15,7 @@ class CalendarUtil {
   /// @param when the date and time
   /// @return the date and time with 0 seconds and minutes including rounded seconds
   static DateTime roundedMinute(DateTime _when) {
-    final when = _when.toUtc();
+    final when = _when;
     final minute = when.minute;
     final second = when.second;
     return when.copyWith(minute: (minute + (second / 60).round()), second: 0);
@@ -24,7 +24,7 @@ class CalendarUtil {
   /// Gets a date for the particular date
   /// @param components the date components
   /// @return the date with a time set to 00:00:00 at utc
-  static DateTime resolveTimeFromDateComponents(DateComponents components) {
+  static DateTime resolveTimeByDateComponents(DateComponents components) {
     return resolveTime(components.year, components.month, components.day);
   }
 

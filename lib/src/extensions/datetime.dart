@@ -19,4 +19,9 @@ extension AdhanDateTimeExtensions on DateTime {
       microsecond ?? this.microsecond,
     );
   }
+
+  int get dayOfYear {
+    final yearStartDate = DateTime(year);
+    return difference(yearStartDate).inDays + 1;
+  }
 }

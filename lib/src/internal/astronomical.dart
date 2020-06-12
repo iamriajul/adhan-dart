@@ -142,7 +142,7 @@ class Astronomical {
   /// @return the nutation in obliquity
   static double nutationInObliquity(double T, double L0, double Lp, double omega) {
     /* Equation from Astronomical Algorithms page 144 */
-    final term1 =  (9.2/3600) * cos(radians(omega));
+    final term1 = (9.2/3600) * cos(radians(omega));
     final term2 = (0.57/3600) * cos(2 * radians(L0));
     final term3 = (0.10/3600) * cos(2 * radians(Lp));
     final term4 = (0.09/3600) * cos(2 * radians(omega));

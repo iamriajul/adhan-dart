@@ -11,6 +11,7 @@ dependencies:
   vector_math: any
   extended_math: any
   dart_numerics: any
+  intl: any
 
 dev_dependencies:
   pedantic: ^1.9.0

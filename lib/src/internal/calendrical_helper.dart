@@ -15,11 +15,11 @@ class CalendricalHelper {
     final M = month > 2 ? month : month + 12;
     final D = day + (hours / 24);
 
-    final A = (Y/100) as int;
-    final B = (2 - A + (A/4)) as int;
+    final A = Y~/100;
+    final B = (2 - A + (A/4)).toInt();
 
-    final i0 = (365.25 * (Y + 4716)) as int;
-    final i1 = (30.6001 * (M + 1)) as int;
+    final i0 = (365.25 * (Y + 4716)).toInt();
+    final i1 = (30.6001 * (M + 1)).toInt();
     return i0 + i1 + D + B - 1524.5;
   }
 
@@ -28,7 +28,7 @@ class CalendricalHelper {
   /// @param date the date
   /// @return the julian day
   static double julianDayByDate(DateTime _date) {
-    final date = _date.toUtc();
+    final date = _date;
     return julianDay(date.year, date.month, date.day, hours: (date.hour + date.minute) / 60.0);
   }
 

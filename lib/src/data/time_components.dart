@@ -8,7 +8,7 @@ class TimeComponents {
   TimeComponents(this.hours, this.minutes, this.seconds);
 
   static TimeComponents fromDouble(double value) {
-    if (value.isInfinite || value.isNaN || value.isNegative) {
+    if (value.isInfinite || value.isNaN) {
       return null;
     }
 
@@ -19,7 +19,7 @@ class TimeComponents {
   }
 
   DateTime dateComponents(DateTime _date) {
-    final date = _date.toUtc();
+    final date = _date;
     return date.copyWith(hour: hours, minute: minutes, second: seconds);
   }
 }

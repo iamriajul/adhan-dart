@@ -25,7 +25,7 @@ class SolarTime {
   double _approximateTransit;
 
   SolarTime(DateTime _today, Coordinates coordinates) {
-    final today = _today.toUtc();
+    final today = _today;
 
     final tomorrow = today.add(Duration(days: 1));
 
