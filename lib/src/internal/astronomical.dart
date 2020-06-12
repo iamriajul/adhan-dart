@@ -1,4 +1,3 @@
-import 'package:dart_numerics/dart_numerics.dart';
 import 'package:extended_math/extended_math.dart';
 import 'package:vector_math/vector_math.dart';
 

@@ -10,7 +10,6 @@ environment:
 dependencies:
   vector_math: any
   extended_math: any
-  dart_numerics: any
   intl: any
 
 dev_dependencies:
