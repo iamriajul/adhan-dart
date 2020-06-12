@@ -27,7 +27,8 @@ class CalendricalHelper {
   /// The Julian Day for a given date
   /// @param date the date
   /// @return the julian day
-  static double julianDayByDate(DateTime date) {
+  static double julianDayByDate(DateTime _date) {
+    final date = _date.toUtc();
     return julianDay(date.year, date.month, date.day, hours: (date.hour + date.minute) / 60.0);
   }
 
