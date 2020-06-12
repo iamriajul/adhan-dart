@@ -1,16 +1,15 @@
 name: adhan
 description: Adhan for Dart / Muslim Prayer Times Library.
 version: 1.0.0
-author: Riajul Islam <kmriajulislami@gmail.com>
 homepage: https://github.com/iamriajul/adhan-dart
 
 environment:
   sdk: '>=2.8.1 <3.0.0'
 
 dependencies:
-  vector_math: any
-  extended_math: any
-  intl: any
+  vector_math: ^2.0.8
+  extended_math: ^0.0.29+1
+  intl: ^0.16.1
 
 dev_dependencies:
   pedantic: ^1.9.0
