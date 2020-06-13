@@ -5,9 +5,9 @@ import 'prayer_adjustments.dart';
 
 /// Parameters used for PrayerTime calculation customization
 ///
-/// Note that, for many cases, you can use {@link CalculationMethod#getParameters()} to get a
+/// Note that, for many cases, you can use [CalculationMethod.getParameters] to get a
 /// pre-computed set of calculation parameters depending on one of the available
-/// {@link CalculationMethod}.
+/// [CalculationMethod].
 class CalculationParameters {
   /// The method used to do the calculation
   CalculationMethod method;
@@ -51,8 +51,8 @@ class CalculationParameters {
   }
 
   /// Set the method adjustments for the current calculation parameters
-  /// @param adjustments the prayer adjustments
-  /// @return this calculation parameters instance
+  /// [adjustments] the prayer adjustments
+  /// return this calculation parameters instance
   CalculationParameters withMethodAdjustments(PrayerAdjustments adjustments) {
     methodAdjustments = adjustments;
     return this;

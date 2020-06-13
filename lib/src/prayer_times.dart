@@ -40,9 +40,9 @@ class PrayerTimes {
   final CalculationParameters calculationParameters;
 
   /// Calculate PrayerTimes
-  /// @param coordinates the coordinates of the location
-  /// @param date the date components for that location
-  /// @param params the parameters for the calculation
+  /// [coordinates] the coordinates of the location
+  /// [dateComponents] the date components for that location
+  /// [calculationParameters] the parameters for the calculation
   factory PrayerTimes(Coordinates coordinates, DateComponents dateComponents,
       CalculationParameters calculationParameters,
       {Duration utcOffset}) {

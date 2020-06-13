@@ -7,7 +7,7 @@ enum HighLatitudeRule {
   /// never be later than the end of hte first seventh of the night.
   seventh_of_the_night,
 
-  /// Similar to {@link HighLatitudeRule#SEVENTH_OF_THE_NIGHT}, but instead of 1/7th, the faction
+  /// Similar to [HighLatitudeRule.seventh_of_the_night], but instead of 1/7th, the faction
   /// of the night used is fajrAngle / 60 and ishaAngle/60.
   twilight_angle
 }

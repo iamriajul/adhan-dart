@@ -44,8 +44,8 @@ enum _CalculationMethod {
   /// Uses a Fajr angle of 20 and an Isha angle of 18
   singapore,
 
-  /// The default value for {@link CalculationParameters#method} when initializing a
-  /// {@link CalculationParameters} object. Sets a Fajr angle of 0 and an Isha angle of 0.
+  /// The default value for [CalculationParameters.method] when initializing a
+  /// [CalculationParameters] object. Sets a Fajr angle of 0 and an Isha angle of 0.
   other
 }
 
@@ -111,13 +111,13 @@ class CalculationMethod {
   static CalculationMethod get singapore =>
       CalculationMethod._(_CalculationMethod.singapore);
 
-  /// The default value for {@link CalculationParameters#method} when initializing a
-  /// {@link CalculationParameters} object. Sets a Fajr angle of 0 and an Isha angle of 0.
+  /// The default value for [CalculationParameters.method] when initializing a
+  /// [CalculationParameters] object. Sets a Fajr angle of 0 and an Isha angle of 0.
   static CalculationMethod get other =>
       CalculationMethod._(_CalculationMethod.other);
 
   /// Return the CalculationParameters for the given method
-  /// @return CalculationParameters for the given Calculation method
+  /// return CalculationParameters for the given Calculation method
   CalculationParameters getParameters() {
     switch (_value) {
       case _CalculationMethod.muslim_world_league:

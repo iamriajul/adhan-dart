@@ -5,9 +5,10 @@ class DateComponents {
 
   DateComponents(this.year, this.month, this.day);
 
-  /// Convenience method that returns a DateComponents from a given Date
-  /// @param date the date
-  /// @return the DateComponents (according to the default device timezone)
+  /// Convenience method that returns a [DateComponents] from a given [DateTime]
+  ///
+  /// [date] the date
+  /// return the [DateComponents] (according to the default device timezone)
   static DateComponents from(DateTime date) {
     return DateComponents(date.year, date.month, date.day);
   }

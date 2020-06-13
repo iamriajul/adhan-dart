@@ -21,12 +21,12 @@ class PrayerAdjustments {
   int isha;
 
   /// Gets a PrayerAdjustments object to offset prayer times
-  /// @param fajr offset from fajr in minutes
-  /// @param sunrise offset from sunrise in minutes
-  /// @param dhuhr offset from dhuhr in minutes
-  /// @param asr offset from asr in minutes
-  /// @param maghrib offset from maghrib in minutes
-  /// @param isha offset from isha in minutes
+  /// [fajr] offset from fajr in minutes
+  /// [sunrise] offset from sunrise in minutes
+  /// [dhuhr] offset from dhuhr in minutes
+  /// [asr] offset from asr in minutes
+  /// [maghrib] offset from maghrib in minutes
+  /// [isha] offset from isha in minutes
   PrayerAdjustments(
       {this.fajr = 0,
       this.sunrise = 0,
