@@ -145,9 +145,11 @@ final prayerTimes = PrayerTimes(coordinates, date, params, utcOffset: newYorkUtc
 | `nextPrayer` | Prayer enum instance |
 | `nextPrayerByDateTime` | Prayer enum instance |
 
-## TODO
-1. add Qibla
-2. add SunnahTimes
+## Features and bugs
+
+Please file feature requests and bugs at the [issue tracker][tracker].
+
+[tracker]: https://github.com/iamriajul/adhan-dart/issues
 
 ## Inspired / Adopted From
 - [adhan-java](https://github.com/batoulapps/adhan-java/blob/master/README.md)
@@ -159,9 +161,3 @@ Adhan Java is a well tested and well documented library for calculating Islamic 
 All astronomical calculations are high precision equations directly from the book [“Astronomical Algorithms” by Jean Meeus](http://www.willbell.com/math/mc1.htm). This book is recommended by the Astronomical Applications Department of the U.S. Naval Observatory and the Earth System Research Laboratory of the National Oceanic and Atmospheric Administration.
 
 Implementations of Adhan in other languages can be found in the [Adhan](https://github.com/batoulapps/Adhan) repo.
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: https://github.com/iamriajul/adhan-dart/issues

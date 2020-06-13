@@ -1,3 +1,8 @@
+## 1.1.6
+
+- added Sunnah Times and Qibla.
+- Code Improvements.
+
 ## 1.1.5
 
 - added Docs/Modified(as Dart Standard) in Codes for Public APIs.
