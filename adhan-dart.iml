@@ -6,6 +6,11 @@
       <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example/adhan_example_flutter_app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/example/adhan_example_flutter_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/example/adhan_example_flutter_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example/adhan_example_flutter_app/build/app/intermediates/flutter/debug/flutter_assets/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/example/adhan_example_flutter_app/build/app/intermediates/merged_assets/debug/out/flutter_assets/packages" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />
