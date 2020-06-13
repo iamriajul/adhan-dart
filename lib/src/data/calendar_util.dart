@@ -34,6 +34,6 @@ class CalendarUtil {
   /// @param day the day
   /// @return the date with a time set to 00:00:00 at utc
   static DateTime resolveTime(int year, int month, int day) {
-    return DateTime(year, month, day, 0, 0, 0);
+    return DateTime.utc(year, month, day, 0, 0, 0);
   }
 }

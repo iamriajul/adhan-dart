@@ -14,13 +14,15 @@ void main() {
   group('Test Prayer Times', () {
 
     test('Test Prayer Time in Kushtia', () {
+      // without changing utcOffset,
+      // so you must run this test under a Asia/Dhaka timezone device.
 
       final kushtia = Coordinates(23.9088, 89.1220);
       final date = DateComponents(2020, 6, 12);
       final params = CalculationMethod.karachi.getParameters();
       params.madhab = Madhab.hanafi;
 
-      final prayerTimes = PrayerTimes(Duration(hours: 6), kushtia, date, params);
+      final prayerTimes = PrayerTimes(kushtia, date, params);
 
       expect(DateFormat.jm().format(prayerTimes.fajr), '3:48 AM');
       expect(DateFormat.jm().format(prayerTimes.sunrise), '5:16 AM');
@@ -32,12 +34,14 @@ void main() {
     });
 
     test('Test Prayer Time in NewYork', () {
+      // with custom timezone UTC Offset.
 
       final newYork = Coordinates(35.7750, -78.6336);
+      final nyUtcOffset = Duration(hours: -4);
       final nyDate = DateComponents(2015, 7, 12);
       final nyParams = CalculationMethod.north_america.getParameters();
       nyParams.madhab = Madhab.hanafi;
-      final nyPrayerTimes = PrayerTimes(Duration(hours: -4), newYork, nyDate, nyParams);
+      final nyPrayerTimes = PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
 
       expect(DateFormat.jm().format(nyPrayerTimes.fajr), '4:42 AM');
       expect(DateFormat.jm().format(nyPrayerTimes.sunrise), '6:08 AM');

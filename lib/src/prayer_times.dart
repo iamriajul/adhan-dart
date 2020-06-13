@@ -17,8 +17,9 @@ class PrayerTimes {
   DateTime maghrib;
   DateTime isha;
 
-  Duration _timezoneOffset;
-  Duration get timezoneOffset => _timezoneOffset;
+  // If you give a UTC Offset then Prayer Times will convert local(with device timezone) time
+  // to UTC and then add the offset.
+  final Duration utcOffset;
 
   final Coordinates coordinates;
 
@@ -31,12 +32,12 @@ class PrayerTimes {
   /// @param coordinates the coordinates of the location
   /// @param date the date components for that location
   /// @param params the parameters for the calculation
-  factory PrayerTimes(Duration timezoneOffset, Coordinates coordinates, DateComponents dateComponents, CalculationParameters calculationParameters) {
-    return PrayerTimes._(timezoneOffset, coordinates, CalendarUtil.resolveTimeByDateComponents(dateComponents), calculationParameters);
+  factory PrayerTimes(Coordinates coordinates, DateComponents dateComponents, CalculationParameters calculationParameters, {Duration utcOffset}) {
+    return PrayerTimes._(coordinates, CalendarUtil.resolveTimeByDateComponents(dateComponents), calculationParameters, utcOffset: utcOffset);
   }
 
-  PrayerTimes._(this._timezoneOffset, this.coordinates, DateTime _date, this.calculationParameters) {
-    final date = _date;
+  PrayerTimes._(this.coordinates, DateTime _date, this.calculationParameters, {this.utcOffset}) {
+    final date = _date.toUtc();
     _dateComponents = DateComponents.from(date);
 
     DateTime tempFajr;
@@ -153,43 +154,52 @@ class PrayerTimes {
           tempFajr
               .add(Duration(minutes: calculationParameters.adjustments.fajr))
               .add(Duration(minutes: calculationParameters.methodAdjustments.fajr))
-              .add(timezoneOffset)
+              .toLocal()
       );
       sunrise = CalendarUtil.roundedMinute(
           tempSunrise
               .add(Duration(minutes: calculationParameters.adjustments.sunrise))
               .add(Duration(minutes: calculationParameters.methodAdjustments.sunrise))
-              .add(timezoneOffset)
+              .toLocal()
       );
       dhuhr = CalendarUtil.roundedMinute(
           tempDhuhr
               .add(Duration(minutes: calculationParameters.adjustments.dhuhr))
               .add(Duration(minutes: calculationParameters.methodAdjustments.dhuhr))
-              .add(timezoneOffset)
-    );
+              .toLocal()
+      );
       asr = CalendarUtil.roundedMinute(
           tempAsr
               .add(Duration(minutes: calculationParameters.adjustments.asr))
               .add(Duration(minutes: calculationParameters.methodAdjustments.asr))
-              .add(timezoneOffset)
+              .toLocal()
       );
       maghrib = CalendarUtil.roundedMinute(
           tempMaghrib
               .add(Duration(minutes: calculationParameters.adjustments.maghrib))
               .add(Duration(minutes: calculationParameters.methodAdjustments.maghrib))
-              .add(timezoneOffset)
+              .toLocal()
       );
       isha = CalendarUtil.roundedMinute(
           tempIsha
               .add(Duration(minutes: calculationParameters.adjustments.isha))
               .add(Duration(minutes: calculationParameters.methodAdjustments.isha))
-              .add(timezoneOffset)
+              .toLocal()
       );
+
+      if (utcOffset != null) {
+        fajr = fajr.toUtc().add(utcOffset);
+        sunrise = sunrise.toUtc().add(utcOffset);
+        dhuhr = dhuhr.toUtc().add(utcOffset);
+        asr = asr.toUtc().add(utcOffset);
+        maghrib = maghrib.toUtc().add(utcOffset);
+        isha = isha.toUtc().add(utcOffset);
+      }
     }
   }
 
   Prayer currentPrayer() {
-    return currentPrayerByDateTime(DateTime.now());
+    return currentPrayerByDateTime(DateTime.now().toUtc());
   }
 
   Prayer currentPrayerByDateTime(DateTime time) {
@@ -212,7 +222,7 @@ class PrayerTimes {
   }
 
   Prayer nextPrayer() {
-    return nextPrayerByDateTime(DateTime.now());
+    return nextPrayerByDateTime(DateTime.now().toUtc());
   }
 
   Prayer nextPrayerByDateTime(DateTime time) {
