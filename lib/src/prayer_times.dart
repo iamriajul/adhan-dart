@@ -36,17 +36,53 @@ class PrayerTimes {
   final Coordinates coordinates;
 
   DateComponents _dateComponents;
+
   DateComponents get dateComponents => _dateComponents;
 
   final CalculationParameters calculationParameters;
 
-  /// Calculate PrayerTimes
+  /// Calculate PrayerTimes and Output Local Times By Default.
+  /// If you provide utcOffset then it will Output UTC with Offset Applied Times.
+  ///
   /// [coordinates] the coordinates of the location
   /// [dateComponents] the date components for that location
   /// [calculationParameters] the parameters for the calculation
   factory PrayerTimes(Coordinates coordinates, DateComponents dateComponents,
       CalculationParameters calculationParameters,
       {Duration utcOffset}) {
+    return PrayerTimes._(
+        coordinates,
+        CalendarUtil.resolveTimeByDateComponents(dateComponents),
+        calculationParameters,
+        utcOffset: utcOffset);
+  }
+
+  /// Calculate PrayerTimes and Output UTC Times.
+  ///
+  /// [coordinates] the coordinates of the location
+  /// [dateComponents] the date components for that location
+  /// [calculationParameters] the parameters for the calculation
+  factory PrayerTimes.utc(
+      Coordinates coordinates,
+      DateComponents dateComponents,
+      CalculationParameters calculationParameters) {
+    return PrayerTimes._(
+        coordinates,
+        CalendarUtil.resolveTimeByDateComponents(dateComponents),
+        calculationParameters,
+        utcOffset: Duration());
+  }
+
+  /// Calculate PrayerTimes and Output UTC with Offset Applied Times.
+  ///
+  /// [coordinates] the coordinates of the location
+  /// [dateComponents] the date components for that location
+  /// [calculationParameters] the parameters for the calculation
+  factory PrayerTimes.utcOffset(
+      Coordinates coordinates,
+      DateComponents dateComponents,
+      CalculationParameters calculationParameters,
+      Duration utcOffset) {
     return PrayerTimes._(
         coordinates,
         CalendarUtil.resolveTimeByDateComponents(dateComponents),
