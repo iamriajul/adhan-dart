@@ -1,9 +1,9 @@
-import 'package:extended_math/extended_math.dart';
-import 'package:vector_math/vector_math.dart';
+import 'dart:math';
 
 import 'astronomical.dart';
 import 'calendrical_helper.dart';
 import 'double_util.dart';
+import 'math.dart';
 
 class SolarCoordinates {
   /// The declination of the sun, the angle between

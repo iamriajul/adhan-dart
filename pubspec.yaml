@@ -7,8 +7,6 @@ environment:
   sdk: '>=2.8.1 <3.0.0'
 
 dependencies:
-  vector_math: ^2.0.8
-  extended_math: ^0.0.29+1
   intl: ^0.16.1
 
 dev_dependencies:

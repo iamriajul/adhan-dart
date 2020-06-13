@@ -1,9 +1,9 @@
-import 'package:extended_math/extended_math.dart';
-import 'package:vector_math/vector_math.dart';
+import 'dart:math';
 
 import '../coordinates.dart';
 import 'astronomical.dart';
 import 'calendrical_helper.dart';
+import 'math.dart';
 import 'shadow_length.dart';
 import 'solar_coordinates.dart';
 

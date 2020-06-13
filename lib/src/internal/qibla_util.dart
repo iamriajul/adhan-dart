@@ -1,7 +1,8 @@
-import 'package:extended_math/extended_math.dart';
-import 'package:vector_math/vector_math.dart';
+import 'dart:math';
+
 import '../coordinates.dart';
 import 'double_util.dart';
+import 'math.dart';
 
 class QiblaUtil {
   static final Coordinates makkah = Coordinates(21.4225241, 39.8261818);

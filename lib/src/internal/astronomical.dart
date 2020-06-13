@@ -1,8 +1,8 @@
-import 'package:extended_math/extended_math.dart';
-import 'package:vector_math/vector_math.dart';
+import 'dart:math';
 
 import '../coordinates.dart';
 import 'double_util.dart';
+import 'math.dart';
 
 /// Astronomical equations
 class Astronomical {
