@@ -10,12 +10,24 @@ import 'internal/solar_time.dart';
 import 'prayer.dart';
 
 class PrayerTimes {
-  DateTime fajr;
-  DateTime sunrise;
-  DateTime dhuhr;
-  DateTime asr;
-  DateTime maghrib;
-  DateTime isha;
+  DateTime _fajr;
+  DateTime get fajr => _fajr;
+
+  DateTime _sunrise;
+  DateTime get sunrise => _sunrise;
+
+  DateTime _dhuhr;
+  DateTime get dhuhr => _dhuhr;
+
+  DateTime _asr;
+  DateTime get asr => _asr;
+
+  DateTime _maghrib;
+  DateTime get maghrib => _maghrib;
+
+  DateTime _isha;
+  DateTime get isha => _isha;
+
 
   // If you give a UTC Offset then Prayer Times will convert local(with device timezone) time
   // to UTC and then add the offset.
@@ -142,45 +154,45 @@ class PrayerTimes {
 
     if (error || tempAsr == null) {
       // if we don't have all prayer times then initialization failed
-      fajr = null;
-      sunrise = null;
-      dhuhr = null;
-      asr = null;
-      maghrib = null;
-      isha = null;
+      _fajr = null;
+      _sunrise = null;
+      _dhuhr = null;
+      _asr = null;
+      _maghrib = null;
+      _isha = null;
     } else {
       // Assign final times to public struct members with all offsets
-      fajr = CalendarUtil.roundedMinute(
+      _fajr = CalendarUtil.roundedMinute(
           tempFajr
               .add(Duration(minutes: calculationParameters.adjustments.fajr))
               .add(Duration(minutes: calculationParameters.methodAdjustments.fajr))
               .toLocal()
       );
-      sunrise = CalendarUtil.roundedMinute(
+      _sunrise = CalendarUtil.roundedMinute(
           tempSunrise
               .add(Duration(minutes: calculationParameters.adjustments.sunrise))
               .add(Duration(minutes: calculationParameters.methodAdjustments.sunrise))
               .toLocal()
       );
-      dhuhr = CalendarUtil.roundedMinute(
+      _dhuhr = CalendarUtil.roundedMinute(
           tempDhuhr
               .add(Duration(minutes: calculationParameters.adjustments.dhuhr))
               .add(Duration(minutes: calculationParameters.methodAdjustments.dhuhr))
               .toLocal()
       );
-      asr = CalendarUtil.roundedMinute(
+      _asr = CalendarUtil.roundedMinute(
           tempAsr
               .add(Duration(minutes: calculationParameters.adjustments.asr))
               .add(Duration(minutes: calculationParameters.methodAdjustments.asr))
               .toLocal()
       );
-      maghrib = CalendarUtil.roundedMinute(
+      _maghrib = CalendarUtil.roundedMinute(
           tempMaghrib
               .add(Duration(minutes: calculationParameters.adjustments.maghrib))
               .add(Duration(minutes: calculationParameters.methodAdjustments.maghrib))
               .toLocal()
       );
-      isha = CalendarUtil.roundedMinute(
+      _isha = CalendarUtil.roundedMinute(
           tempIsha
               .add(Duration(minutes: calculationParameters.adjustments.isha))
               .add(Duration(minutes: calculationParameters.methodAdjustments.isha))
@@ -188,12 +200,12 @@ class PrayerTimes {
       );
 
       if (utcOffset != null) {
-        fajr = fajr.toUtc().add(utcOffset);
-        sunrise = sunrise.toUtc().add(utcOffset);
-        dhuhr = dhuhr.toUtc().add(utcOffset);
-        asr = asr.toUtc().add(utcOffset);
-        maghrib = maghrib.toUtc().add(utcOffset);
-        isha = isha.toUtc().add(utcOffset);
+        _fajr = fajr.toUtc().add(utcOffset);
+        _sunrise = sunrise.toUtc().add(utcOffset);
+        _dhuhr = dhuhr.toUtc().add(utcOffset);
+        _asr = asr.toUtc().add(utcOffset);
+        _maghrib = maghrib.toUtc().add(utcOffset);
+        _isha = isha.toUtc().add(utcOffset);
       }
     }
   }
