@@ -1,3 +1,8 @@
+## 1.1.7
+
+- added Flutter Example in /example folder.
+- added utc and utcOffset quick helper factory in PrayerTimes.
+
 ## 1.1.6
 
 - added Sunnah Times and Qibla.

@@ -16,7 +16,7 @@ import 'package:adhan/adhan.dart';
 
 main() {
   print('Kushtia Prayer Times');
-  final kushtia = Coordinates(23.9088, 89.1220);
+  final kushtia = Coordinates(23.9088, 89.1220);  // Replace with your own location lat, lng.
   final date = DateComponents(2020, 6, 12);
   final params = CalculationMethod.karachi.getParameters();
   params.madhab = Madhab.hanafi;
@@ -32,6 +32,7 @@ main() {
 
   print('---');
 
+  // Custom Timezone Usage. (Most of you won't need this).
   print('NewYork Prayer Times');
   final newYork = Coordinates(35.7750, -78.6336);
   final nyUtcOffset = Duration(hours: -4);
@@ -49,6 +50,7 @@ main() {
   print(DateFormat.jm().format(nyPrayerTimes.isha));
 }
 ```
+##### See [Flutter Example](https://github.com/iamriajul/adhan-dart/tree/master/example/adhan_example_flutter_app) Folder for Flutter Usage Example with Dynamic Location From GPS.
 
 ### Initialization parameters
 
