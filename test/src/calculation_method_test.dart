@@ -9,6 +9,5 @@ void main() {
 
     expect(karachiMethod1 == karachiMethod2, isTrue);
     expect(karachiMethod1 == egyptianMethod1, isFalse);
-
   });
 }

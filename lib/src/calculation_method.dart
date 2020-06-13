@@ -57,23 +57,23 @@ extension CalculationMethodExtensions on CalculationMethod {
       case CalculationMethod.muslim_world_league:
         {
           return CalculationParameters(
-              fajrAngle: 18.0, ishaAngle: 17.0, method: this)
+                  fajrAngle: 18.0, ishaAngle: 17.0, method: this)
               .withMethodAdjustments(PrayerAdjustments(
-              fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+                  fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
         }
       case CalculationMethod.egyptian:
         {
           return CalculationParameters(
-              fajrAngle: 20.0, ishaAngle: 18.0, method: this)
+                  fajrAngle: 20.0, ishaAngle: 18.0, method: this)
               .withMethodAdjustments(PrayerAdjustments(
-              fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+                  fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
         }
       case CalculationMethod.karachi:
         {
           return CalculationParameters(
-              fajrAngle: 18.0, ishaAngle: 18.0, method: this)
+                  fajrAngle: 18.0, ishaAngle: 18.0, method: this)
               .withMethodAdjustments(PrayerAdjustments(
-              fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+                  fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
         }
       case CalculationMethod.umm_al_qura:
         {
@@ -83,23 +83,23 @@ extension CalculationMethodExtensions on CalculationMethod {
       case CalculationMethod.dubai:
         {
           return CalculationParameters(
-              fajrAngle: 18.2, ishaAngle: 18.2, method: this)
+                  fajrAngle: 18.2, ishaAngle: 18.2, method: this)
               .withMethodAdjustments(PrayerAdjustments(
-              fajr: 0, sunrise: -3, dhuhr: 3, asr: 3, maghrib: 3, isha: 0));
+                  fajr: 0, sunrise: -3, dhuhr: 3, asr: 3, maghrib: 3, isha: 0));
         }
       case CalculationMethod.moon_sighting_committee:
         {
           return CalculationParameters(
-              fajrAngle: 18.0, ishaAngle: 18.0, method: this)
+                  fajrAngle: 18.0, ishaAngle: 18.0, method: this)
               .withMethodAdjustments(PrayerAdjustments(
-              fajr: 0, sunrise: 0, dhuhr: 5, asr: 0, maghrib: 3, isha: 0));
+                  fajr: 0, sunrise: 0, dhuhr: 5, asr: 0, maghrib: 3, isha: 0));
         }
       case CalculationMethod.north_america:
         {
           return CalculationParameters(
-              fajrAngle: 15.0, ishaAngle: 15.0, method: this)
+                  fajrAngle: 15.0, ishaAngle: 15.0, method: this)
               .withMethodAdjustments(PrayerAdjustments(
-              fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+                  fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
         }
       case CalculationMethod.kuwait:
         {
@@ -114,9 +114,9 @@ extension CalculationMethodExtensions on CalculationMethod {
       case CalculationMethod.singapore:
         {
           return CalculationParameters(
-              fajrAngle: 20.0, ishaAngle: 18.0, method: this)
+                  fajrAngle: 20.0, ishaAngle: 18.0, method: this)
               .withMethodAdjustments(PrayerAdjustments(
-              fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+                  fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
         }
       case CalculationMethod.other:
         {
