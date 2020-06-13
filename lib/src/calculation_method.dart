@@ -59,36 +59,60 @@ class CalculationMethod {
 
   CalculationMethod._(this._value);
 
+  /// Muslim World League
+  /// Uses Fajr angle of 18 and an Isha angle of 17
   static CalculationMethod get muslim_world_league =>
       CalculationMethod._(_CalculationMethod.muslim_world_league);
 
+  /// Egyptian General Authority of Survey
+  /// Uses Fajr angle of 19.5 and an Isha angle of 17.5
   static CalculationMethod get egyptian =>
       CalculationMethod._(_CalculationMethod.egyptian);
 
+  /// University of Islamic Sciences, Karachi
+  /// Uses Fajr angle of 18 and an Isha angle of 18
   static CalculationMethod get karachi =>
       CalculationMethod._(_CalculationMethod.karachi);
 
+  /// Umm al-Qura University, Makkah
+  /// Uses a Fajr angle of 18.5 and an Isha angle of 90. Note: You should add a +30 minute custom
+  /// adjustment of Isha during Ramadan.
   static CalculationMethod get umm_al_qura =>
       CalculationMethod._(_CalculationMethod.umm_al_qura);
 
+  /// The Gulf Region
+  /// Uses Fajr and Isha angles of 18.2 degrees.
   static CalculationMethod get dubai =>
       CalculationMethod._(_CalculationMethod.dubai);
 
+  /// Moonsighting Committee
+  /// Uses a Fajr angle of 18 and an Isha angle of 18. Also uses seasonal adjustment values.
   static CalculationMethod get moon_sighting_committee =>
       CalculationMethod._(_CalculationMethod.moon_sighting_committee);
 
+  /// Referred to as the ISNA method
+  /// This method is included for completeness, but is not recommended.
+  /// Uses a Fajr angle of 15 and an Isha angle of 15.
   static CalculationMethod get north_america =>
       CalculationMethod._(_CalculationMethod.north_america);
 
+  /// Kuwait
+  /// Uses a Fajr angle of 18 and an Isha angle of 17.5
   static CalculationMethod get kuwait =>
       CalculationMethod._(_CalculationMethod.kuwait);
 
+  /// Qatar
+  /// Modified version of Umm al-Qura that uses a Fajr angle of 18.
   static CalculationMethod get qatar =>
       CalculationMethod._(_CalculationMethod.qatar);
 
+  /// Singapore
+  /// Uses a Fajr angle of 20 and an Isha angle of 18
   static CalculationMethod get singapore =>
       CalculationMethod._(_CalculationMethod.singapore);
 
+  /// The default value for {@link CalculationParameters#method} when initializing a
+  /// {@link CalculationParameters} object. Sets a Fajr angle of 0 and an Isha angle of 0.
   static CalculationMethod get other =>
       CalculationMethod._(_CalculationMethod.other);
 
