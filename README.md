@@ -140,7 +140,7 @@ final prayerTimes = PrayerTimes(coordinates, date, params, utcOffset: newYorkUtc
 1. add Qibla
 2. add SunnahTimes
 
-## Inspired From / Adopted From
+## Inspired / Adopted From
 - [adhan-java](https://github.com/batoulapps/adhan-java/blob/master/README.md)
 
 # Adhan Java
