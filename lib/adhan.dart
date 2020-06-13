@@ -1,8 +1,5 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+/// Adhan for Dart / Muslim Prayer Times Library.
+/// Now retrieving Prayer time in Dart easier than ever.
 library adhan;
 
 export 'src/adhan_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
