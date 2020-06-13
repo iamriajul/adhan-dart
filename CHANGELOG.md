@@ -1,3 +1,7 @@
+## 1.1.5
+
+- added Docs/Modified(as Dart Standard) in Codes for Public APIs.
+
 ## 1.1.4
 
 - made lightweight to use. removed external dependencies, so it has lower method overhead.
