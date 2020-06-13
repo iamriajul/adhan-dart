@@ -1,3 +1,7 @@
+## 1.1.3
+
+- update readme
+
 ## 1.1.2
 
 - update package description
