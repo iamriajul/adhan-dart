@@ -3,7 +3,11 @@ import 'package:adhan/src/extensions/datetime.dart';
 import 'package:intl/intl.dart';
 import 'package:test/test.dart';
 
+import 'src/calculation_method_test.dart' as calculation_method_test;
+
 void main() {
+  calculation_method_test.main();
+
   group('Test Prayer Times', () {
     test('Test Prayer Time in Kushtia', () {
       final kushtia = Coordinates(23.9088, 89.1220);

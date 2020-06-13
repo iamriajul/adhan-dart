@@ -57,6 +57,11 @@ class CalculationMethod {
     return _value.toString();
   }
 
+  @override
+  bool operator ==(other) {
+    return toString() == other.toString();
+  }
+
   CalculationMethod._(this._value);
 
   /// Muslim World League

@@ -16,6 +16,11 @@ class Madhab {
     return _value.toString();
   }
 
+  @override
+  bool operator ==(other) {
+    return toString() == other.toString();
+  }
+
   Madhab._(this._value);
 
   static Madhab get shafi => Madhab._(_Madhab.shafi);
