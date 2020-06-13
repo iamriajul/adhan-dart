@@ -1,8 +1,4 @@
-import 'package:adhan/src/calculation_method.dart';
-import 'package:adhan/src/coordinates.dart';
-import 'package:adhan/src/data/date_components.dart';
-import 'package:adhan/src/madhab.dart';
-import 'package:adhan/src/prayer_times.dart';
+import 'package:adhan/adhan.dart';
 import 'package:intl/intl.dart';
 
 void main() {

@@ -1,4 +1,6 @@
 export 'prayer_times.dart';
+export 'prayer.dart';
+export 'coordinates.dart';
 export 'madhab.dart';
 export 'calculation_method.dart';
 export 'calculation_parameters.dart';
