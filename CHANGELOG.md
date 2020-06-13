@@ -1,3 +1,7 @@
+## 1.1.4
+
+- made lightweight to use. removed external dependencies, so it has lower method overhead.
+
 ## 1.1.3
 
 - update readme
