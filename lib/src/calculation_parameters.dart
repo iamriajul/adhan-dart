@@ -58,19 +58,19 @@ class CalculationParameters {
     return this;
   }
 
-  NightPortions nightPortions() {
+  _NightPortions nightPortions() {
     switch (highLatitudeRule) {
       case HighLatitudeRule.middle_of_the_night:
         {
-          return NightPortions(1.0 / 2.0, 1.0 / 2.0);
+          return _NightPortions(1.0 / 2.0, 1.0 / 2.0);
         }
       case HighLatitudeRule.seventh_of_the_night:
         {
-          return NightPortions(1.0 / 7.0, 1.0 / 7.0);
+          return _NightPortions(1.0 / 7.0, 1.0 / 7.0);
         }
       case HighLatitudeRule.twilight_angle:
         {
-          return NightPortions(fajrAngle / 60.0, ishaAngle / 60.0);
+          return _NightPortions(fajrAngle / 60.0, ishaAngle / 60.0);
         }
       default:
         {
@@ -80,9 +80,9 @@ class CalculationParameters {
   }
 }
 
-class NightPortions {
+class _NightPortions {
   final double fajr;
   final double isha;
 
-  NightPortions(this.fajr, this.isha);
+  _NightPortions(this.fajr, this.isha);
 }
