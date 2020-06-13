@@ -97,7 +97,7 @@ class PrayerTimes {
 
       DateTime safeFajr;
       if (calculationParameters.method == CalculationMethod.moon_sighting_committee) {
-        safeFajr = seasonAdjustedMorningTwilight(coordinates.latitude, dayOfYear, year, sunriseComponents);
+        safeFajr = _seasonAdjustedMorningTwilight(coordinates.latitude, dayOfYear, year, sunriseComponents);
       } else {
         final portion = nightPortions.fajr;
         final nightFraction = portion * night ~/ 1000;
@@ -126,7 +126,7 @@ class PrayerTimes {
 
         DateTime safeIsha;
         if (calculationParameters.method == CalculationMethod.moon_sighting_committee) {
-          safeIsha = PrayerTimes.seasonAdjustedEveningTwilight(
+          safeIsha = PrayerTimes._seasonAdjustedEveningTwilight(
               coordinates.latitude, dayOfYear, year, sunsetComponents);
         } else {
           final portion = nightPortions.isha;
@@ -264,7 +264,7 @@ class PrayerTimes {
     }
   }
 
-  static DateTime seasonAdjustedMorningTwilight(double latitude, int day, int year, DateTime sunrise) {
+  static DateTime _seasonAdjustedMorningTwilight(double latitude, int day, int year, DateTime sunrise) {
     final a = 75 + ((28.65 / 55.0) * (latitude).abs());
     final b = 75 + ((19.44 / 55.0) * (latitude).abs());
     final c = 75 + ((32.74 / 55.0) * (latitude).abs());
@@ -289,7 +289,7 @@ class PrayerTimes {
     return sunrise.add(Duration(seconds: -(adjustment * 60.0).round()));
   }
 
-  static DateTime seasonAdjustedEveningTwilight(double latitude, int day, int year, DateTime sunset) {
+  static DateTime _seasonAdjustedEveningTwilight(double latitude, int day, int year, DateTime sunset) {
     final a = 75 + ((25.60 / 55.0) * (latitude).abs());
     final b = 75 + ((2.050 / 55.0) * (latitude).abs());
     final c = 75 - ((9.210 / 55.0) * (latitude).abs());
