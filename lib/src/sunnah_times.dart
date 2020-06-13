@@ -24,15 +24,18 @@ class SunnahTimes {
     final tomorrowPrayerTimes = PrayerTimes(
         prayerTimes.coordinates,
         DateComponents.from(tomorrowPrayerTimesDate),
-        prayerTimes.calculationParameters);
+        prayerTimes.calculationParameters,
+        utcOffset: prayerTimes.utcOffset);
 
     final nightDurationInSeconds =
-        ((tomorrowPrayerTimes.fajr.millisecondsSinceEpoch -
-                prayerTimes.maghrib.millisecondsSinceEpoch) /
-            1000) as int;
+        (tomorrowPrayerTimes.fajr.millisecondsSinceEpoch -
+                prayerTimes.maghrib.millisecondsSinceEpoch) ~/
+            1000;
+
     _middleOfTheNight = CalendarUtil.roundedMinute(prayerTimes.maghrib
-        .add(Duration(seconds: (nightDurationInSeconds / 2.0) as int)));
-    _lastThirdOfTheNight = CalendarUtil.roundedMinute(prayerTimes.maghrib
-        .add(Duration(seconds: (nightDurationInSeconds * (2.0 / 3.0)) as int)));
+        .add(Duration(seconds: nightDurationInSeconds ~/ 2.0)));
+
+    _lastThirdOfTheNight = CalendarUtil.roundedMinute(prayerTimes.maghrib.add(
+        Duration(seconds: (nightDurationInSeconds * (2.0 / 3.0)).toInt())));
   }
 }
