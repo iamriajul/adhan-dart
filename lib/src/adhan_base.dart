@@ -7,4 +7,5 @@ export 'calculation_parameters.dart';
 export 'high_latitude_rule.dart';
 export 'prayer_adjustments.dart';
 export 'qibla.dart';
+export 'sunnah_times.dart';
 export 'data/date_components.dart';
