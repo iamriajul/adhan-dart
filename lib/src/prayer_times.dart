@@ -8,6 +8,7 @@ import 'data/date_components.dart';
 import 'data/time_components.dart';
 import 'internal/solar_time.dart';
 import 'prayer.dart';
+import 'madhab.dart';
 
 class PrayerTimes {
   DateTime _fajr;

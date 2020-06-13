@@ -1,6 +1,6 @@
 import 'internal/shadow_length.dart';
 
-enum _Madhab {
+enum Madhab {
   /// Shafi Madhab
   shafi,
 
@@ -8,38 +8,20 @@ enum _Madhab {
   hanafi
 }
 
-class Madhab {
-  final _Madhab _value;
-
-  @override
-  String toString() {
-    return _value.toString();
-  }
-
-  @override
-  bool operator ==(other) {
-    return toString() == other.toString();
-  }
-
-  Madhab._(this._value);
-
-  static Madhab get shafi => Madhab._(_Madhab.shafi);
-
-  static Madhab get hanafi => Madhab._(_Madhab.hanafi);
-
+extension MadhabExtensions on Madhab {
   ShadowLength getShadowLength() {
-    switch (_value) {
-      case _Madhab.shafi:
+    switch (this) {
+      case Madhab.shafi:
         {
           return ShadowLength.single;
         }
-      case _Madhab.hanafi:
+      case Madhab.hanafi:
         {
           return ShadowLength.double;
         }
       default:
         {
-          throw FormatException("Invalid Madhab");
+          throw FormatException('Invalid Madhab');
         }
     }
   }
