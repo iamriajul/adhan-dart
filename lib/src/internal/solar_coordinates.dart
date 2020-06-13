@@ -30,7 +30,8 @@ class SolarCoordinates {
     final omega =
         Astronomical.ascendingLunarNodeLongitude(/* julianCentury */ T);
     final lambda = radians(Astronomical.apparentSolarLongitude(
-        /* julianCentury*/ T, /* meanLongitude */ L0));
+        /* julianCentury*/ T,
+        /* meanLongitude */ L0));
 
     final theta0 = Astronomical.meanSiderealTime(/* julianCentury */ T);
     final deltaPsi = Astronomical.nutationInLongitude(
