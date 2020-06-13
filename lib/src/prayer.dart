@@ -1,9 +1,1 @@
-enum Prayer {
-  none,
-  fajr,
-  sunrise,
-  dhuhr,
-  asr,
-  maghrib,
-  isha
-}
+enum Prayer { none, fajr, sunrise, dhuhr, asr, maghrib, isha }

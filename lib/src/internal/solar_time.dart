@@ -8,7 +8,6 @@ import 'shadow_length.dart';
 import 'solar_coordinates.dart';
 
 class SolarTime {
-
   double _transit;
   double get transit => _transit;
 
@@ -40,24 +39,52 @@ class SolarTime {
     final solarAltitude = -50.0 / 60.0;
 
     _observer = coordinates;
-    _transit = Astronomical.correctedTransit(_approximateTransit, coordinates.longitude,
-        _solar.apparentSiderealTime, _solar.rightAscension, _prevSolar.rightAscension,
+    _transit = Astronomical.correctedTransit(
+        _approximateTransit,
+        coordinates.longitude,
+        _solar.apparentSiderealTime,
+        _solar.rightAscension,
+        _prevSolar.rightAscension,
         _nextSolar.rightAscension);
-    _sunrise = Astronomical.correctedHourAngle(_approximateTransit, solarAltitude,
-        coordinates, false, _solar.apparentSiderealTime, _solar.rightAscension,
-        _prevSolar.rightAscension, _nextSolar.rightAscension, _solar.declination,
-        _prevSolar.declination, _nextSolar.declination);
-    _sunset = Astronomical.correctedHourAngle(_approximateTransit, solarAltitude,
-        coordinates, true, _solar.apparentSiderealTime, _solar.rightAscension,
-        _prevSolar.rightAscension, _nextSolar.rightAscension, _solar.declination,
-        _prevSolar.declination, _nextSolar.declination);
+    _sunrise = Astronomical.correctedHourAngle(
+        _approximateTransit,
+        solarAltitude,
+        coordinates,
+        false,
+        _solar.apparentSiderealTime,
+        _solar.rightAscension,
+        _prevSolar.rightAscension,
+        _nextSolar.rightAscension,
+        _solar.declination,
+        _prevSolar.declination,
+        _nextSolar.declination);
+    _sunset = Astronomical.correctedHourAngle(
+        _approximateTransit,
+        solarAltitude,
+        coordinates,
+        true,
+        _solar.apparentSiderealTime,
+        _solar.rightAscension,
+        _prevSolar.rightAscension,
+        _nextSolar.rightAscension,
+        _solar.declination,
+        _prevSolar.declination,
+        _nextSolar.declination);
   }
 
   double hourAngle(double angle, bool afterTransit) {
-    return Astronomical.correctedHourAngle(_approximateTransit, angle, _observer,
-        afterTransit, _solar.apparentSiderealTime, _solar.rightAscension,
-        _prevSolar.rightAscension, _nextSolar.rightAscension, _solar.declination,
-        _prevSolar.declination, _nextSolar.declination);
+    return Astronomical.correctedHourAngle(
+        _approximateTransit,
+        angle,
+        _observer,
+        afterTransit,
+        _solar.apparentSiderealTime,
+        _solar.rightAscension,
+        _prevSolar.rightAscension,
+        _nextSolar.rightAscension,
+        _solar.declination,
+        _prevSolar.declination,
+        _nextSolar.declination);
   }
 
   // hours from transit
@@ -69,5 +96,4 @@ class SolarTime {
 
     return hourAngle(angle, true);
   }
-
 }

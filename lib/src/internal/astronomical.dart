@@ -6,7 +6,6 @@ import 'double_util.dart';
 
 /// Astronomical equations
 class Astronomical {
-
   /// The geometric mean longitude of the sun in degrees.
   /// @param T the julian century
   /// @return the geometric longitude of the sun in degrees
@@ -74,7 +73,8 @@ class Astronomical {
   static double solarEquationOfTheCenter(double T, double M) {
     /* Equation from Astronomical Algorithms page 164 */
     final Mrad = radians(M);
-    final term1 = (1.914602 - (0.004817 * T) - (0.000014 * pow(T, 2))) * sin(Mrad);
+    final term1 =
+        (1.914602 - (0.004817 * T) - (0.000014 * pow(T, 2))) * sin(Mrad);
     final term2 = (0.019993 - (0.000101 * T)) * sin(2 * Mrad);
     final term3 = 0.000289 * sin(3 * Mrad);
     return term1 + term2 + term3;
@@ -124,12 +124,13 @@ class Astronomical {
   /// @param Lp the lunar longitude
   /// @param Ω the ascending node
   /// @return the nutation in longitude
-  static double nutationInLongitude(double T, double L0, double Lp, double omega) {
-    /* Equation from Astronomical Algorithms page 144 */ 
-    final term1 = (-17.2/3600) * sin(radians(omega));
-    final term2 =  (1.32/3600) * sin(2 * radians(L0));
-    final term3 =  (0.23/3600) * sin(2 * radians(Lp));
-    final term4 =  (0.21/3600) * sin(2 * radians(omega));
+  static double nutationInLongitude(
+      double T, double L0, double Lp, double omega) {
+    /* Equation from Astronomical Algorithms page 144 */
+    final term1 = (-17.2 / 3600) * sin(radians(omega));
+    final term2 = (1.32 / 3600) * sin(2 * radians(L0));
+    final term3 = (0.23 / 3600) * sin(2 * radians(Lp));
+    final term4 = (0.21 / 3600) * sin(2 * radians(omega));
     return term1 - term2 - term3 + term4;
   }
 
@@ -139,12 +140,13 @@ class Astronomical {
   /// @param Lp the lunar longitude
   /// @param Ω the ascending node
   /// @return the nutation in obliquity
-  static double nutationInObliquity(double T, double L0, double Lp, double omega) {
+  static double nutationInObliquity(
+      double T, double L0, double Lp, double omega) {
     /* Equation from Astronomical Algorithms page 144 */
-    final term1 = (9.2/3600) * cos(radians(omega));
-    final term2 = (0.57/3600) * cos(2 * radians(L0));
-    final term3 = (0.10/3600) * cos(2 * radians(Lp));
-    final term4 = (0.09/3600) * cos(2 * radians(omega));
+    final term1 = (9.2 / 3600) * cos(radians(omega));
+    final term2 = (0.57 / 3600) * cos(2 * radians(L0));
+    final term3 = (0.10 / 3600) * cos(2 * radians(Lp));
+    final term4 = (0.09 / 3600) * cos(2 * radians(omega));
     return term1 + term2 + term3 - term4;
   }
 
@@ -156,8 +158,7 @@ class Astronomical {
   static double altitudeOfCelestialBody(double phi, double delta, double H) {
     /* Equation from Astronomical Algorithms page 93 */
     final term1 = sin(radians(phi)) * sin(radians(delta));
-    final term2 = cos(radians(phi)) *
-    cos(radians(delta)) * cos(radians(H));
+    final term2 = cos(radians(phi)) * cos(radians(delta)) * cos(radians(H));
     return degrees(asin(term1 + term2));
   }
 
@@ -180,12 +181,16 @@ class Astronomical {
   /// @param α1 the previous right ascension
   /// @param α3 the next right ascension
   /// @return the time (in universal time) when the sun is at its highest point in the sky
-  static double correctedTransit(double m0, double L, double theta0, double alpha2, double alpha1, double alpha3) {
+  static double correctedTransit(double m0, double L, double theta0,
+      double alpha2, double alpha1, double alpha3) {
     /* Equation from page Astronomical Algorithms 102 */
     final Lw = L * -1;
     final theta = DoubleUtil.unwindAngle(theta0 + (360.985647 * m0));
     final alpha = DoubleUtil.unwindAngle(interpolateAngles(
-    /* value */ alpha2, /* previousValue */ alpha1, /* nextValue */ alpha3, /* factor */ m0));
+        /* value */ alpha2,
+        /* previousValue */ alpha1,
+        /* nextValue */ alpha3,
+        /* factor */ m0));
     final H = DoubleUtil.closestAngle(theta - Lw - alpha);
     final deltaM = H / -360;
     return (m0 + deltaM) * 24;
@@ -204,25 +209,46 @@ class Astronomical {
   /// @param δ1 the previous declination
   /// @param δ3 the next declination
   /// @return the corrected hour angle
-  static double correctedHourAngle(double m0, double h0, Coordinates coordinates, bool afterTransit,
-      double theta0, double alpha2, double alpha1, double alpha3, double delta2, double delta1, double delta3) {
+  static double correctedHourAngle(
+      double m0,
+      double h0,
+      Coordinates coordinates,
+      bool afterTransit,
+      double theta0,
+      double alpha2,
+      double alpha1,
+      double alpha3,
+      double delta2,
+      double delta1,
+      double delta3) {
     /* Equation from page Astronomical Algorithms 102 */
     final Lw = coordinates.longitude * -1;
-    final term1 = sin(radians(h0)) - (sin(radians(coordinates.latitude)) * sin(radians(delta2)));
+    final term1 = sin(radians(h0)) -
+        (sin(radians(coordinates.latitude)) * sin(radians(delta2)));
     final term2 = cos(radians(coordinates.latitude)) * cos(radians(delta2));
     final H0 = degrees(acos(term1 / term2));
     final m = afterTransit ? m0 + (H0 / 360) : m0 - (H0 / 360);
     final theta = DoubleUtil.unwindAngle(theta0 + (360.985647 * m));
     final alpha = DoubleUtil.unwindAngle(interpolateAngles(
-    /* value */ alpha2, /* previousValue */ alpha1, /* nextValue */ alpha3, /* factor */ m));
-    final delta = interpolate(/* value */ delta2, /* previousValue */ delta1,
-    /* nextValue */ delta3, /* factor */ m);
+        /* value */ alpha2,
+        /* previousValue */ alpha1,
+        /* nextValue */ alpha3,
+        /* factor */ m));
+    final delta = interpolate(
+        /* value */ delta2,
+        /* previousValue */ delta1,
+        /* nextValue */ delta3,
+        /* factor */ m);
     final H = (theta - Lw - alpha);
-    final h = altitudeOfCelestialBody(/* observerLatitude */ coordinates.latitude,
-    /* declination */ delta, /* localHourAngle */ H);
+    final h = altitudeOfCelestialBody(
+        /* observerLatitude */ coordinates.latitude,
+        /* declination */ delta,
+        /* localHourAngle */ H);
     final term3 = h - h0;
-    final term4 = 360 * cos(radians(delta)) *
-    cos(radians(coordinates.latitude)) * sin(radians(H));
+    final term4 = 360 *
+        cos(radians(delta)) *
+        cos(radians(coordinates.latitude)) *
+        sin(radians(H));
     final deltaM = term3 / term4;
     return (m + deltaM) * 24;
   }
@@ -243,7 +269,7 @@ class Astronomical {
     final a = y2 - y1;
     final b = y3 - y2;
     final c = b - a;
-    return y2 + ((n/2) * (a + b + (n * c)));
+    return y2 + ((n / 2) * (a + b + (n * c)));
   }
 
   /// Interpolation of three angles, accounting for angle unwinding
@@ -257,6 +283,6 @@ class Astronomical {
     final a = DoubleUtil.unwindAngle(y2 - y1);
     final b = DoubleUtil.unwindAngle(y3 - y2);
     final c = b - a;
-    return y2 + ((n/2) * (a + b + (n * c)));
+    return y2 + ((n / 2) * (a + b + (n * c)));
   }
 }

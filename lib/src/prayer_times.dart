@@ -28,7 +28,6 @@ class PrayerTimes {
   DateTime _isha;
   DateTime get isha => _isha;
 
-
   // If you give a UTC Offset then Prayer Times will convert local(with device timezone) time
   // to UTC and then add the offset.
   final Duration utcOffset;
@@ -44,11 +43,18 @@ class PrayerTimes {
   /// @param coordinates the coordinates of the location
   /// @param date the date components for that location
   /// @param params the parameters for the calculation
-  factory PrayerTimes(Coordinates coordinates, DateComponents dateComponents, CalculationParameters calculationParameters, {Duration utcOffset}) {
-    return PrayerTimes._(coordinates, CalendarUtil.resolveTimeByDateComponents(dateComponents), calculationParameters, utcOffset: utcOffset);
+  factory PrayerTimes(Coordinates coordinates, DateComponents dateComponents,
+      CalculationParameters calculationParameters,
+      {Duration utcOffset}) {
+    return PrayerTimes._(
+        coordinates,
+        CalendarUtil.resolveTimeByDateComponents(dateComponents),
+        calculationParameters,
+        utcOffset: utcOffset);
   }
 
-  PrayerTimes._(this.coordinates, DateTime _date, this.calculationParameters, {this.utcOffset}) {
+  PrayerTimes._(this.coordinates, DateTime _date, this.calculationParameters,
+      {this.utcOffset}) {
     final date = _date.toUtc();
     _dateComponents = DateComponents.from(date);
 
@@ -65,20 +71,26 @@ class PrayerTimes {
     final solarTime = SolarTime(date, coordinates);
 
     var timeComponents = TimeComponents.fromDouble(solarTime.transit);
-    final transit = timeComponents == null ? null : timeComponents.dateComponents(date);
+    final transit =
+        timeComponents == null ? null : timeComponents.dateComponents(date);
 
     timeComponents = TimeComponents.fromDouble(solarTime.sunrise);
-    final sunriseComponents = timeComponents == null ? null : timeComponents.dateComponents(date);
+    final sunriseComponents =
+        timeComponents == null ? null : timeComponents.dateComponents(date);
 
     timeComponents = TimeComponents.fromDouble(solarTime.sunset);
-    final sunsetComponents = timeComponents == null ? null : timeComponents.dateComponents(date);
+    final sunsetComponents =
+        timeComponents == null ? null : timeComponents.dateComponents(date);
 
     final tomorrow = date.add(Duration(days: 1));
     final tomorrowSolarTime = SolarTime(tomorrow, coordinates);
-    final tomorrowSunriseComponents = TimeComponents.fromDouble(tomorrowSolarTime.sunrise);
+    final tomorrowSunriseComponents =
+        TimeComponents.fromDouble(tomorrowSolarTime.sunrise);
 
-    final error = transit == null || sunriseComponents == null ||
-        sunsetComponents == null || tomorrowSunriseComponents == null;
+    final error = transit == null ||
+        sunriseComponents == null ||
+        sunsetComponents == null ||
+        tomorrowSunriseComponents == null;
     if (!error) {
       tempDhuhr = transit;
       tempSunrise = sunriseComponents;
@@ -91,25 +103,31 @@ class PrayerTimes {
       }
 
       // get night length
-      final tomorrowSunrise = tomorrowSunriseComponents.dateComponents(tomorrow);
-      final night = tomorrowSunrise.millisecondsSinceEpoch - sunsetComponents.millisecondsSinceEpoch;
+      final tomorrowSunrise =
+          tomorrowSunriseComponents.dateComponents(tomorrow);
+      final night = tomorrowSunrise.millisecondsSinceEpoch -
+          sunsetComponents.millisecondsSinceEpoch;
 
-      timeComponents = TimeComponents
-          .fromDouble(solarTime.hourAngle(-calculationParameters.fajrAngle, false));
+      timeComponents = TimeComponents.fromDouble(
+          solarTime.hourAngle(-calculationParameters.fajrAngle, false));
       if (timeComponents != null) {
         tempFajr = timeComponents.dateComponents(date);
       }
 
-      if (calculationParameters.method == CalculationMethod.moon_sighting_committee &&
+      if (calculationParameters.method ==
+              CalculationMethod.moon_sighting_committee &&
           coordinates.latitude >= 55) {
-        tempFajr = sunriseComponents.add(Duration(seconds: -1 * (night / 7000) as int));
+        tempFajr = sunriseComponents
+            .add(Duration(seconds: -1 * (night / 7000) as int));
       }
 
       final nightPortions = calculationParameters.nightPortions();
 
       DateTime safeFajr;
-      if (calculationParameters.method == CalculationMethod.moon_sighting_committee) {
-        safeFajr = _seasonAdjustedMorningTwilight(coordinates.latitude, dayOfYear, year, sunriseComponents);
+      if (calculationParameters.method ==
+          CalculationMethod.moon_sighting_committee) {
+        safeFajr = _seasonAdjustedMorningTwilight(
+            coordinates.latitude, dayOfYear, year, sunriseComponents);
       } else {
         final portion = nightPortions.fajr;
         final nightFraction = portion * night ~/ 1000;
@@ -122,7 +140,8 @@ class PrayerTimes {
 
       // Isha calculation with check against safe value
       if (calculationParameters.ishaInterval > 0) {
-        tempIsha = tempMaghrib.add(Duration(seconds: calculationParameters.ishaInterval * 60));
+        tempIsha = tempMaghrib
+            .add(Duration(seconds: calculationParameters.ishaInterval * 60));
       } else {
         timeComponents = TimeComponents.fromDouble(
             solarTime.hourAngle(-calculationParameters.ishaAngle, true));
@@ -130,14 +149,16 @@ class PrayerTimes {
           tempIsha = timeComponents.dateComponents(date);
         }
 
-        if (calculationParameters.method == CalculationMethod.moon_sighting_committee &&
+        if (calculationParameters.method ==
+                CalculationMethod.moon_sighting_committee &&
             coordinates.latitude >= 55) {
           final nightFraction = night / 7000 as int;
           tempIsha = sunsetComponents.add(Duration(seconds: nightFraction));
         }
 
         DateTime safeIsha;
-        if (calculationParameters.method == CalculationMethod.moon_sighting_committee) {
+        if (calculationParameters.method ==
+            CalculationMethod.moon_sighting_committee) {
           safeIsha = PrayerTimes._seasonAdjustedEveningTwilight(
               coordinates.latitude, dayOfYear, year, sunsetComponents);
         } else {
@@ -162,42 +183,32 @@ class PrayerTimes {
       _isha = null;
     } else {
       // Assign final times to public struct members with all offsets
-      _fajr = CalendarUtil.roundedMinute(
-          tempFajr
-              .add(Duration(minutes: calculationParameters.adjustments.fajr))
-              .add(Duration(minutes: calculationParameters.methodAdjustments.fajr))
-              .toLocal()
-      );
-      _sunrise = CalendarUtil.roundedMinute(
-          tempSunrise
-              .add(Duration(minutes: calculationParameters.adjustments.sunrise))
-              .add(Duration(minutes: calculationParameters.methodAdjustments.sunrise))
-              .toLocal()
-      );
-      _dhuhr = CalendarUtil.roundedMinute(
-          tempDhuhr
-              .add(Duration(minutes: calculationParameters.adjustments.dhuhr))
-              .add(Duration(minutes: calculationParameters.methodAdjustments.dhuhr))
-              .toLocal()
-      );
-      _asr = CalendarUtil.roundedMinute(
-          tempAsr
-              .add(Duration(minutes: calculationParameters.adjustments.asr))
-              .add(Duration(minutes: calculationParameters.methodAdjustments.asr))
-              .toLocal()
-      );
-      _maghrib = CalendarUtil.roundedMinute(
-          tempMaghrib
-              .add(Duration(minutes: calculationParameters.adjustments.maghrib))
-              .add(Duration(minutes: calculationParameters.methodAdjustments.maghrib))
-              .toLocal()
-      );
-      _isha = CalendarUtil.roundedMinute(
-          tempIsha
-              .add(Duration(minutes: calculationParameters.adjustments.isha))
-              .add(Duration(minutes: calculationParameters.methodAdjustments.isha))
-              .toLocal()
-      );
+      _fajr = CalendarUtil.roundedMinute(tempFajr
+          .add(Duration(minutes: calculationParameters.adjustments.fajr))
+          .add(Duration(minutes: calculationParameters.methodAdjustments.fajr))
+          .toLocal());
+      _sunrise = CalendarUtil.roundedMinute(tempSunrise
+          .add(Duration(minutes: calculationParameters.adjustments.sunrise))
+          .add(Duration(
+              minutes: calculationParameters.methodAdjustments.sunrise))
+          .toLocal());
+      _dhuhr = CalendarUtil.roundedMinute(tempDhuhr
+          .add(Duration(minutes: calculationParameters.adjustments.dhuhr))
+          .add(Duration(minutes: calculationParameters.methodAdjustments.dhuhr))
+          .toLocal());
+      _asr = CalendarUtil.roundedMinute(tempAsr
+          .add(Duration(minutes: calculationParameters.adjustments.asr))
+          .add(Duration(minutes: calculationParameters.methodAdjustments.asr))
+          .toLocal());
+      _maghrib = CalendarUtil.roundedMinute(tempMaghrib
+          .add(Duration(minutes: calculationParameters.adjustments.maghrib))
+          .add(Duration(
+              minutes: calculationParameters.methodAdjustments.maghrib))
+          .toLocal());
+      _isha = CalendarUtil.roundedMinute(tempIsha
+          .add(Duration(minutes: calculationParameters.adjustments.isha))
+          .add(Duration(minutes: calculationParameters.methodAdjustments.isha))
+          .toLocal());
 
       if (utcOffset != null) {
         _fajr = fajr.toUtc().add(utcOffset);
@@ -276,7 +287,8 @@ class PrayerTimes {
     }
   }
 
-  static DateTime _seasonAdjustedMorningTwilight(double latitude, int day, int year, DateTime sunrise) {
+  static DateTime _seasonAdjustedMorningTwilight(
+      double latitude, int day, int year, DateTime sunrise) {
     final a = 75 + ((28.65 / 55.0) * (latitude).abs());
     final b = 75 + ((19.44 / 55.0) * (latitude).abs());
     final c = 75 + ((32.74 / 55.0) * (latitude).abs());
@@ -284,24 +296,25 @@ class PrayerTimes {
 
     double adjustment;
     final dyy = PrayerTimes.daysSinceSolstice(day, year, latitude);
-    if ( dyy < 91) {
-      adjustment = a + ( b - a ) / 91.0 * dyy;
-    } else if ( dyy < 137) {
-      adjustment = b + ( c - b ) / 46.0 * ( dyy - 91 );
-    } else if ( dyy < 183 ) {
-      adjustment = c + ( d - c ) / 46.0 * ( dyy - 137 );
-    } else if ( dyy < 229 ) {
-      adjustment = d + ( c - d ) / 46.0 * ( dyy - 183 );
-    } else if ( dyy < 275 ) {
-      adjustment = c + ( b - c ) / 46.0 * ( dyy - 229 );
+    if (dyy < 91) {
+      adjustment = a + (b - a) / 91.0 * dyy;
+    } else if (dyy < 137) {
+      adjustment = b + (c - b) / 46.0 * (dyy - 91);
+    } else if (dyy < 183) {
+      adjustment = c + (d - c) / 46.0 * (dyy - 137);
+    } else if (dyy < 229) {
+      adjustment = d + (c - d) / 46.0 * (dyy - 183);
+    } else if (dyy < 275) {
+      adjustment = c + (b - c) / 46.0 * (dyy - 229);
     } else {
-      adjustment = b + ( a - b ) / 91.0 * ( dyy - 275 );
+      adjustment = b + (a - b) / 91.0 * (dyy - 275);
     }
 
     return sunrise.add(Duration(seconds: -(adjustment * 60.0).round()));
   }
 
-  static DateTime _seasonAdjustedEveningTwilight(double latitude, int day, int year, DateTime sunset) {
+  static DateTime _seasonAdjustedEveningTwilight(
+      double latitude, int day, int year, DateTime sunset) {
     final a = 75 + ((25.60 / 55.0) * (latitude).abs());
     final b = 75 + ((2.050 / 55.0) * (latitude).abs());
     final c = 75 - ((9.210 / 55.0) * (latitude).abs());
@@ -309,18 +322,18 @@ class PrayerTimes {
 
     double adjustment;
     final dyy = PrayerTimes.daysSinceSolstice(day, year, latitude);
-    if ( dyy < 91) {
-      adjustment = a + ( b - a ) / 91.0 * dyy;
-    } else if ( dyy < 137) {
-      adjustment = b + ( c - b ) / 46.0 * ( dyy - 91 );
-    } else if ( dyy < 183 ) {
-      adjustment = c + ( d - c ) / 46.0 * ( dyy - 137 );
-    } else if ( dyy < 229 ) {
-      adjustment = d + ( c - d ) / 46.0 * ( dyy - 183 );
-    } else if ( dyy < 275 ) {
-      adjustment = c + ( b - c ) / 46.0 * ( dyy - 229 );
+    if (dyy < 91) {
+      adjustment = a + (b - a) / 91.0 * dyy;
+    } else if (dyy < 137) {
+      adjustment = b + (c - b) / 46.0 * (dyy - 91);
+    } else if (dyy < 183) {
+      adjustment = c + (d - c) / 46.0 * (dyy - 137);
+    } else if (dyy < 229) {
+      adjustment = d + (c - d) / 46.0 * (dyy - 183);
+    } else if (dyy < 275) {
+      adjustment = c + (b - c) / 46.0 * (dyy - 229);
     } else {
-      adjustment = b + ( a - b ) / 91.0 * ( dyy - 275 );
+      adjustment = b + (a - b) / 91.0 * (dyy - 275);
     }
 
     return sunset.add(Duration(seconds: (adjustment * 60.0).round()));

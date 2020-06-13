@@ -59,76 +59,116 @@ class CalculationMethod {
 
   CalculationMethod._(this._value);
 
-  static CalculationMethod get muslim_world_league => CalculationMethod._(_CalculationMethod.muslim_world_league);
+  static CalculationMethod get muslim_world_league =>
+      CalculationMethod._(_CalculationMethod.muslim_world_league);
 
-  static CalculationMethod get egyptian => CalculationMethod._(_CalculationMethod.egyptian);
+  static CalculationMethod get egyptian =>
+      CalculationMethod._(_CalculationMethod.egyptian);
 
-  static CalculationMethod get karachi => CalculationMethod._(_CalculationMethod.karachi);
+  static CalculationMethod get karachi =>
+      CalculationMethod._(_CalculationMethod.karachi);
 
-  static CalculationMethod get umm_al_qura => CalculationMethod._(_CalculationMethod.umm_al_qura);
+  static CalculationMethod get umm_al_qura =>
+      CalculationMethod._(_CalculationMethod.umm_al_qura);
 
-  static CalculationMethod get dubai => CalculationMethod._(_CalculationMethod.dubai);
+  static CalculationMethod get dubai =>
+      CalculationMethod._(_CalculationMethod.dubai);
 
-  static CalculationMethod get moon_sighting_committee => CalculationMethod._(_CalculationMethod.moon_sighting_committee);
+  static CalculationMethod get moon_sighting_committee =>
+      CalculationMethod._(_CalculationMethod.moon_sighting_committee);
 
-  static CalculationMethod get north_america => CalculationMethod._(_CalculationMethod.north_america);
+  static CalculationMethod get north_america =>
+      CalculationMethod._(_CalculationMethod.north_america);
 
-  static CalculationMethod get kuwait => CalculationMethod._(_CalculationMethod.kuwait);
+  static CalculationMethod get kuwait =>
+      CalculationMethod._(_CalculationMethod.kuwait);
 
-  static CalculationMethod get qatar => CalculationMethod._(_CalculationMethod.qatar);
+  static CalculationMethod get qatar =>
+      CalculationMethod._(_CalculationMethod.qatar);
 
-  static CalculationMethod get singapore => CalculationMethod._(_CalculationMethod.singapore);
+  static CalculationMethod get singapore =>
+      CalculationMethod._(_CalculationMethod.singapore);
 
-  static CalculationMethod get other => CalculationMethod._(_CalculationMethod.other);
+  static CalculationMethod get other =>
+      CalculationMethod._(_CalculationMethod.other);
 
   /// Return the CalculationParameters for the given method
   /// @return CalculationParameters for the given Calculation method
   CalculationParameters getParameters() {
     switch (_value) {
-      case _CalculationMethod.muslim_world_league: {
-        return CalculationParameters(fajrAngle: 18.0, ishaAngle: 17.0, method: this)
-            .withMethodAdjustments(PrayerAdjustments(fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
-      }
-      case _CalculationMethod.egyptian: {
-        return CalculationParameters(fajrAngle: 20.0, ishaAngle: 18.0, method: this)
-            .withMethodAdjustments(PrayerAdjustments(fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
-      }
-      case _CalculationMethod.karachi: {
-        return CalculationParameters(fajrAngle: 18.0, ishaAngle: 18.0, method: this)
-            .withMethodAdjustments(PrayerAdjustments(fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
-      }
-      case _CalculationMethod.umm_al_qura: {
-        return CalculationParameters(fajrAngle: 18.5, ishaAngle: 90, method: this);
-      }
-      case _CalculationMethod.dubai: {
-        return CalculationParameters(fajrAngle: 18.2, ishaAngle: 18.2, method: this)
-            .withMethodAdjustments(PrayerAdjustments(fajr: 0, sunrise: -3, dhuhr: 3, asr: 3, maghrib: 3, isha: 0));
-      }
-      case _CalculationMethod.moon_sighting_committee: {
-        return CalculationParameters(fajrAngle: 18.0, ishaAngle: 18.0, method: this)
-            .withMethodAdjustments(PrayerAdjustments(fajr: 0, sunrise: 0, dhuhr: 5, asr: 0, maghrib: 3, isha: 0));
-      }
-      case _CalculationMethod.north_america: {
-        return CalculationParameters(fajrAngle: 15.0, ishaAngle: 15.0, method: this)
-            .withMethodAdjustments(PrayerAdjustments(fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
-      }
-      case _CalculationMethod.kuwait: {
-        return CalculationParameters(fajrAngle: 18.0, ishaAngle: 17.5, method: this);
-      }
-      case _CalculationMethod.qatar: {
-        return CalculationParameters(fajrAngle: 18.0, ishaAngle: 90, method: this);
-      }
-      case _CalculationMethod.singapore: {
-        return CalculationParameters(fajrAngle: 20.0, ishaAngle: 18.0, method: this)
-            .withMethodAdjustments(PrayerAdjustments(fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
-      }
-      case _CalculationMethod.other: {
-        return CalculationParameters(fajrAngle: 0.0, ishaAngle: 0.0, method: this);
-      }
-      default: {
-        throw FormatException('Invalid CalculationMethod');
-      }
+      case _CalculationMethod.muslim_world_league:
+        {
+          return CalculationParameters(
+                  fajrAngle: 18.0, ishaAngle: 17.0, method: this)
+              .withMethodAdjustments(PrayerAdjustments(
+                  fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+        }
+      case _CalculationMethod.egyptian:
+        {
+          return CalculationParameters(
+                  fajrAngle: 20.0, ishaAngle: 18.0, method: this)
+              .withMethodAdjustments(PrayerAdjustments(
+                  fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+        }
+      case _CalculationMethod.karachi:
+        {
+          return CalculationParameters(
+                  fajrAngle: 18.0, ishaAngle: 18.0, method: this)
+              .withMethodAdjustments(PrayerAdjustments(
+                  fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+        }
+      case _CalculationMethod.umm_al_qura:
+        {
+          return CalculationParameters(
+              fajrAngle: 18.5, ishaAngle: 90, method: this);
+        }
+      case _CalculationMethod.dubai:
+        {
+          return CalculationParameters(
+                  fajrAngle: 18.2, ishaAngle: 18.2, method: this)
+              .withMethodAdjustments(PrayerAdjustments(
+                  fajr: 0, sunrise: -3, dhuhr: 3, asr: 3, maghrib: 3, isha: 0));
+        }
+      case _CalculationMethod.moon_sighting_committee:
+        {
+          return CalculationParameters(
+                  fajrAngle: 18.0, ishaAngle: 18.0, method: this)
+              .withMethodAdjustments(PrayerAdjustments(
+                  fajr: 0, sunrise: 0, dhuhr: 5, asr: 0, maghrib: 3, isha: 0));
+        }
+      case _CalculationMethod.north_america:
+        {
+          return CalculationParameters(
+                  fajrAngle: 15.0, ishaAngle: 15.0, method: this)
+              .withMethodAdjustments(PrayerAdjustments(
+                  fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+        }
+      case _CalculationMethod.kuwait:
+        {
+          return CalculationParameters(
+              fajrAngle: 18.0, ishaAngle: 17.5, method: this);
+        }
+      case _CalculationMethod.qatar:
+        {
+          return CalculationParameters(
+              fajrAngle: 18.0, ishaAngle: 90, method: this);
+        }
+      case _CalculationMethod.singapore:
+        {
+          return CalculationParameters(
+                  fajrAngle: 20.0, ishaAngle: 18.0, method: this)
+              .withMethodAdjustments(PrayerAdjustments(
+                  fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+        }
+      case _CalculationMethod.other:
+        {
+          return CalculationParameters(
+              fajrAngle: 0.0, ishaAngle: 0.0, method: this);
+        }
+      default:
+        {
+          throw FormatException('Invalid CalculationMethod');
+        }
     }
   }
-
 }

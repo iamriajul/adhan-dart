@@ -25,7 +25,8 @@ void main() {
   final nyDate = DateComponents(2015, 7, 12);
   final nyParams = CalculationMethod.north_america.getParameters();
   nyParams.madhab = Madhab.hanafi;
-  final nyPrayerTimes = PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
+  final nyPrayerTimes =
+      PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
 
   print(nyPrayerTimes.fajr.timeZoneName);
   print(DateFormat.jm().format(nyPrayerTimes.fajr));

@@ -24,15 +24,18 @@ class Madhab {
 
   ShadowLength getShadowLength() {
     switch (_value) {
-      case _Madhab.shafi: {
-        return ShadowLength.single;
-      }
-      case _Madhab.hanafi: {
-        return ShadowLength.double;
-      }
-      default: {
-        throw FormatException("Invalid Madhab");
-      }
+      case _Madhab.shafi:
+        {
+          return ShadowLength.single;
+        }
+      case _Madhab.hanafi:
+        {
+          return ShadowLength.double;
+        }
+      default:
+        {
+          throw FormatException("Invalid Madhab");
+        }
     }
   }
 }

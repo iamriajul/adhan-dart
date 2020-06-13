@@ -10,9 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:test/test.dart';
 
 void main() {
-
   group('Test Prayer Times', () {
-
     test('Test Prayer Time in Kushtia', () {
       // without changing utcOffset,
       // so you must run this test under a Asia/Dhaka timezone device.
@@ -30,7 +28,6 @@ void main() {
       expect(DateFormat.jm().format(prayerTimes.asr), '4:44 PM');
       expect(DateFormat.jm().format(prayerTimes.maghrib), '6:51 PM');
       expect(DateFormat.jm().format(prayerTimes.isha), '8:19 PM');
-
     });
 
     test('Test Prayer Time in NewYork', () {
@@ -41,7 +38,8 @@ void main() {
       final nyDate = DateComponents(2015, 7, 12);
       final nyParams = CalculationMethod.north_america.getParameters();
       nyParams.madhab = Madhab.hanafi;
-      final nyPrayerTimes = PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
+      final nyPrayerTimes =
+          PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
 
       expect(DateFormat.jm().format(nyPrayerTimes.fajr), '4:42 AM');
       expect(DateFormat.jm().format(nyPrayerTimes.sunrise), '6:08 AM');
@@ -49,13 +47,10 @@ void main() {
       expect(DateFormat.jm().format(nyPrayerTimes.asr), '6:22 PM');
       expect(DateFormat.jm().format(nyPrayerTimes.maghrib), '8:32 PM');
       expect(DateFormat.jm().format(nyPrayerTimes.isha), '9:57 PM');
-
     });
-
   });
 
   group('Test Extensions', () {
-
     test('Test dayOfYear with DateTime', () {
       final myDate = DateTime(2020, 3, 2, 14, 30);
       // in 2020
@@ -65,6 +60,5 @@ void main() {
       // so 31 + 29 and + 2 = 62
       expect(myDate.dayOfYear, 62);
     });
-
   });
 }

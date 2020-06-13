@@ -2,7 +2,6 @@
 /// These values are added (or subtracted) from the prayer time that is calculated before
 /// returning the result times.
 class PrayerAdjustments {
-
   /// Fajr offset in minutes
   int fajr;
 
@@ -28,11 +27,11 @@ class PrayerAdjustments {
   /// @param asr offset from asr in minutes
   /// @param maghrib offset from maghrib in minutes
   /// @param isha offset from isha in minutes
-  PrayerAdjustments({
-    this.fajr = 0,
-    this.sunrise = 0,
-    this.dhuhr = 0,
-    this.asr = 0,
-    this.maghrib = 0,
-    this.isha = 0});
+  PrayerAdjustments(
+      {this.fajr = 0,
+      this.sunrise = 0,
+      this.dhuhr = 0,
+      this.asr = 0,
+      this.maghrib = 0,
+      this.isha = 0});
 }

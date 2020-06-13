@@ -8,7 +8,8 @@ class QiblaUtil {
 
   static double calculateQiblaDirection(Coordinates coordinates) {
     // Equation from "Spherical Trigonometry For the use of colleges and schools" page 50
-    final longitudeDelta = radians(makkah.longitude) - radians(coordinates.longitude);
+    final longitudeDelta =
+        radians(makkah.longitude) - radians(coordinates.longitude);
     final latitudeRadians = radians(coordinates.latitude);
     final term1 = sin(longitudeDelta);
     final term2 = cos(latitudeRadians) * tan(radians(makkah.latitude));

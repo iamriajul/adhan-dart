@@ -11,5 +11,4 @@ class DateComponents {
   static DateComponents from(DateTime date) {
     return DateComponents(date.year, date.month, date.day);
   }
-  
 }
