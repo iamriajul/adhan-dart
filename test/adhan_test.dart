@@ -6,11 +6,13 @@ import 'package:test/test.dart';
 import 'src/calculation_method_test.dart' as calculation_method_test;
 import 'src/madhab_test.dart' as madhab_test;
 import 'src/sunnah_times_test.dart' as sunnah_times_test;
+import 'src/qibla_test.dart' as qibla_test;
 
 void main() {
   calculation_method_test.main();
   madhab_test.main();
   sunnah_times_test.main();
+  qibla_test.main();
 
   group('Test Prayer Times', () {
     test('Test Prayer Time in Kushtia', () {
