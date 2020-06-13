@@ -16,4 +16,9 @@ void main() {
     final anchorage = Coordinates(61.2181, -149.9003);
     expect(almostEqualD(Qibla(anchorage).direction, 350.883, 0.001), isTrue);
   });
+
+  test('Test Makkah Coordinates', () {
+    expect(almostEqualD(Qibla.MAKKAH.latitude, 21.3891, 0.1), isTrue);
+    expect(almostEqualD(Qibla.MAKKAH.longitude, 39.8579, 0.1), isTrue);
+  });
 }
