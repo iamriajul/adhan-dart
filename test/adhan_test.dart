@@ -6,14 +6,14 @@ import 'package:test/test.dart';
 void main() {
   group('Test Prayer Times', () {
     test('Test Prayer Time in Kushtia', () {
-
       final kushtia = Coordinates(23.9088, 89.1220);
       final kushtiaUtcOffset = Duration(hours: 6);
       final date = DateComponents(2020, 6, 12);
       final params = CalculationMethod.karachi.getParameters();
       params.madhab = Madhab.hanafi;
 
-      final prayerTimes = PrayerTimes(kushtia, date, params, utcOffset: kushtiaUtcOffset);
+      final prayerTimes =
+          PrayerTimes(kushtia, date, params, utcOffset: kushtiaUtcOffset);
 
       expect(DateFormat.jm().format(prayerTimes.fajr), '3:48 AM');
       expect(DateFormat.jm().format(prayerTimes.sunrise), '5:16 AM');
