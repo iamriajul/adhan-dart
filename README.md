@@ -1,3 +1,12 @@
+# Adhan Dart / Flutter
+![Dart CI](https://github.com/iamriajul/adhan-dart/workflows/Dart%20CI/badge.svg?branch=master)
+
+Adhan Dart is a well tested and well documented library for calculating Islamic prayer times. Adhan Dart is written to be compatible with Dart and Dart Native / Flutter / Android / iOS / Web etc... devices of all api versions. It has a small method overhead.
+
+All astronomical calculations are high precision equations directly from the book “Astronomical Algorithms” by Jean Meeus. This book is recommended by the Astronomical Applications Department of the U.S. Naval Observatory and the Earth System Research Laboratory of the National Oceanic and Atmospheric Administration.
+
+Implementations of Adhan in other languages can be found in the parent repo Adhan.
+
 ## Usage
 
 A simple usage example:
