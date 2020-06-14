@@ -23,4 +23,6 @@ jobs:
     - name: Run test coverage
       run: pub run test_coverage
     - name: upload reports to codecov
-      run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }}
+      run: curl -s https://codecov.io/bash | bash
+      env:
+        CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
