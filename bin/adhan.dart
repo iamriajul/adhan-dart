@@ -17,8 +17,7 @@ void main() {
   final params = CalculationMethod.karachi.getParameters();
   params.madhab = Madhab.hanafi;
 
-  final prayerTimes =
-      PrayerTimes(coordinates, DateComponents.from(DateTime.now()), params);
+  final prayerTimes = PrayerTimes.today(coordinates, params);
 
   print('--------------------------');
   print("---Today's Prayer Times---");
