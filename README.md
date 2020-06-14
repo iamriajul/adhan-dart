@@ -23,12 +23,11 @@ A simple usage example:
 import 'package:adhan/adhan.dart';
 
 main() {
-  print('Kushtia Prayer Times');
-  final kushtia = Coordinates(23.9088, 89.1220);  // Replace with your own location lat, lng.
-  final date = DateComponents(2020, 6, 12);
+  print('My Prayer Times');
+  final myCoordinates = Coordinates(23.9088, 89.1220); // Replace with your own location lat, lng.
   final params = CalculationMethod.karachi.getParameters();
   params.madhab = Madhab.hanafi;
-  final prayerTimes = PrayerTimes(kushtia, date, params);
+  final prayerTimes = PrayerTimes.today(myCoordinates, params);
 
   print(prayerTimes.fajr.timeZoneName);
   print(DateFormat.jm().format(prayerTimes.fajr));
