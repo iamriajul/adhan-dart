@@ -1,8 +1,7 @@
 # Adhan Dart / Flutter
 [![Pub](https://img.shields.io/pub/v/adhan.svg)](https://pub.dev/packages/adhan)
-[![tests](https://github.com/iamriajul/adhan-dart/workflows/tests/badge.svg?branch=master)](https://github.com/iamriajul/adhan-dart/actions)
-![Coverage](https://raw.githubusercontent.com/iamriajul/adhan-dart/master/coverage_badge.svg?sanitize=true)
-[![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://github.com/tenhobi/effective_dart)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/iamriajul/adhan-dart/tests)](https://github.com/iamriajul/adhan-dart/actions)
+[![codecov](https://codecov.io/gh/iamriajul/adhan-dart/branch/master/graph/badge.svg)](https://codecov.io/gh/iamriajul/adhan-dart)
 [![Star on GitHub](https://img.shields.io/github/stars/iamriajul/adhan-dart.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/iamriajul/adhan-dart)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
