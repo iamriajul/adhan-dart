@@ -57,6 +57,22 @@ class PrayerTimes {
         utcOffset: utcOffset);
   }
 
+  /// Calculate Today's PrayerTimes and Output Local Times By Default.
+  /// If you provide utcOffset then it will Output UTC with Offset Applied Times.
+  ///
+  /// [coordinates] the coordinates of the location
+  /// [calculationParameters] the parameters for the calculation
+  factory PrayerTimes.today(
+      Coordinates coordinates, CalculationParameters calculationParameters,
+      {Duration utcOffset}) {
+    return PrayerTimes._(
+        coordinates,
+        CalendarUtil.resolveTimeByDateComponents(
+            DateComponents.from(DateTime.now())),
+        calculationParameters,
+        utcOffset: utcOffset);
+  }
+
   /// Calculate PrayerTimes and Output UTC Times.
   ///
   /// [coordinates] the coordinates of the location
