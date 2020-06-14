@@ -59,6 +59,9 @@ main() {
 ```
 ##### See [Flutter Example](https://github.com/iamriajul/adhan-dart/tree/master/example/adhan_example_flutter_app) Folder for Flutter Usage Example with Dynamic Location From GPS.
 
+also, you can run `pub run adhan` to test quickly based on Hanafi, Karachi parameters.
+*alternatively, without installing in project, you can run `pub global activate adhan` and then run `pub global run adhan` to test quickly.
+
 ### Initialization parameters
 
 #### Coordinates
