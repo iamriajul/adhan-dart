@@ -1,3 +1,9 @@
+## 1.1.8
+
+- added PrayerTimes.today helper factory, so you don't have to manage `DateComponents` for Today's Times.
+- added adhan bin, so you can run `pub run adhan` in cli to test quickly.
+- docs and readme updates.
+
 ## 1.1.7
 
 - added Flutter Example in /example folder.
