@@ -13,3 +13,4 @@ build/
 doc/api/
 /test/.test_coverage.dart
 /coverage/lcov.info
+/coverage_badge.svg

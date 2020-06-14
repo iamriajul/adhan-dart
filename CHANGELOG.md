@@ -1,3 +1,7 @@
+## 1.1.9
+
+- Example updates
+
 ## 1.1.8
 
 - added PrayerTimes.today helper factory, so you don't have to manage `DateComponents` for Today's Times.
