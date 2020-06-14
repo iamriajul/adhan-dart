@@ -1,7 +1,10 @@
 # Adhan Dart / Flutter
-[![Tests](https://github.com/iamriajul/adhan-dart/workflows/Tests/badge.svg?branch=master)](https://github.com/iamriajul/adhan-dart/actions)
-![Coverage](https://raw.githubusercontent.com/iamriajul/adhan-dart/master/coverage_badge.svg?sanitize=true)
 [![Pub](https://img.shields.io/pub/v/adhan.svg)](https://pub.dev/packages/adhan)
+[![tests](https://github.com/iamriajul/adhan-dart/workflows/tests/badge.svg?branch=master)](https://github.com/iamriajul/adhan-dart/actions)
+![Coverage](https://raw.githubusercontent.com/iamriajul/adhan-dart/master/coverage_badge.svg?sanitize=true)
+[![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://github.com/tenhobi/effective_dart)
+[![Star on GitHub](https://img.shields.io/github/stars/iamriajul/adhan-dart.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/iamriajul/adhan-dart)
+[![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
 Adhan Dart is a well tested and well documented library for calculating Islamic prayer times. Adhan Dart is written to be compatible with Dart and Dart Native / Flutter / Android / iOS / Web etc... devices of all api versions. It has a small method overhead, and has no external dependencies.
 
