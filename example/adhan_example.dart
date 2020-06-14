@@ -9,7 +9,8 @@ void main() {
   params.madhab = Madhab.hanafi;
   final prayerTimes = PrayerTimes.today(myCoordinates, params);
 
-  print(prayerTimes.fajr.timeZoneName);
+  print(
+      "---Today's Prayer Times in Your Local Timezone(${prayerTimes.fajr.timeZoneName})---");
   print(DateFormat.jm().format(prayerTimes.fajr));
   print(DateFormat.jm().format(prayerTimes.sunrise));
   print(DateFormat.jm().format(prayerTimes.dhuhr));

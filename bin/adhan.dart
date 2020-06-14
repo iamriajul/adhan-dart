@@ -18,8 +18,10 @@ void main() {
 
   final prayerTimes = PrayerTimes.today(coordinates, params);
 
-  print('--------------------------');
-  print("---Today's Prayer Times---");
+  print(
+      '-----------------------------------------------------------------------------------');
+  print(
+      "---Today's Prayer Times in Your Local Timezone(${prayerTimes.fajr.timeZoneName})---");
   print('Fajr: ${prayerTimes.fajr}');
   print('Sunrise: ${prayerTimes.sunrise}');
   print('Dhuhr: ${prayerTimes.dhuhr}');
