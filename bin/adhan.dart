@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:adhan/adhan.dart';
-import 'package:intl/intl.dart';
 
 void main() {
   print(
@@ -21,10 +20,10 @@ void main() {
 
   print('--------------------------');
   print("---Today's Prayer Times---");
-  print('Fajr: ${DateFormat.jm().format(prayerTimes.fajr)}');
-  print('Sunrise: ${DateFormat.jm().format(prayerTimes.sunrise)}');
-  print('Dhuhr: ${DateFormat.jm().format(prayerTimes.dhuhr)}');
-  print('Asr: ${DateFormat.jm().format(prayerTimes.asr)}');
-  print('Maghrib: ${DateFormat.jm().format(prayerTimes.maghrib)}');
-  print('Isha: ${DateFormat.jm().format(prayerTimes.isha)}');
+  print('Fajr: ${prayerTimes.fajr}');
+  print('Sunrise: ${prayerTimes.sunrise}');
+  print('Dhuhr: ${prayerTimes.dhuhr}');
+  print('Asr: ${prayerTimes.asr}');
+  print('Maghrib: ${prayerTimes.maghrib}');
+  print('Isha: ${prayerTimes.isha}');
 }
