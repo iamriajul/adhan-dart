@@ -72,7 +72,7 @@ final coordinates = new Coordinates(35.78056, -78.6389);
 
 #### Date
 
-The date parameter passed in should be an instance of the `DateComponents` object. The year, month, and day values need to be populated. All other values will be ignored. The year, month and day values should be for the  local date that you want prayer times for. These date values are expected to be for the Gregorian calendar. There's also a convenience method for converting a `java.util.Date` to `DateComponents`.
+The date parameter passed in should be an instance of the `DateComponents` object. The year, month, and day values need to be populated. All other values will be ignored. The year, month and day values should be for the  local date that you want prayer times for. These date values are expected to be for the Gregorian calendar. There's also a convenience method for converting a `DateTime` to `DateComponents`.
 
 ```dart
 final date = DateComponents(2015, 11, 1);
@@ -98,7 +98,7 @@ params.adjustments.fajr = 2;
 | `ishaInterval` | Minutes after Maghrib (if set, the time for Isha will be Maghrib plus ishaInterval) |
 | `madhab` | Value from the Madhab object, used to calculate Asr |
 | `highLatitudeRule` | Value from the HighLatitudeRule object, used to set a minimum time for Fajr and a max time for Isha |
-| `adjustments` | JavaScript object with custom prayer time adjustments in minutes for each prayer time |
+| `adjustments` | `PrayerAdjustments` object with custom prayer time adjustments in minutes for each prayer time |
 
 **CalculationMethod**
 
