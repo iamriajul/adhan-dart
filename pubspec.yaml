@@ -12,3 +12,7 @@ dev_dependencies:
   intl: ^0.16.1
   dart_numerics: ^0.0.5
   test_coverage: ^0.4.1
+  enum_to_string: ^1.0.9
+  strings: ^0.1.2
+  path: ^1.7.0
+  timezone: ^0.5.7
