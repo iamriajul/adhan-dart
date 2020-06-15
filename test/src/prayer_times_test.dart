@@ -6,7 +6,7 @@ import 'package:enum_to_string/enum_to_string.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:strings/strings.dart';
-import 'package:timezone/standalone.dart' as tz;
+import 'package:timezone/standalone.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -48,7 +48,7 @@ void main() {
   });
 
   test('Test Prayer Times in Wide Range Locations From JSON Data.', () async {
-    await tz.initializeTimeZone();
+    await initializeTimeZone();
 
     final jsonDir = Directory('./test/data/prayer-times');
     final files = jsonDir.listSync();
@@ -80,7 +80,7 @@ void main() {
         // Get Coordinates
         final coordinates =
             Coordinates(params['latitude'], params['longitude']);
-        final locationTz = tz.getLocation(params['timezone']);
+        final locationTz = getLocation(params['timezone']);
 
         times.forEach((time) {
           final date = DateTime.tryParse(time['date']);
@@ -88,31 +88,43 @@ void main() {
             final prayerTimes = PrayerTimes(
                 coordinates, DateComponents.from(date), calculationParams);
 
+            final actualFajr = TZDateTime.from(prayerTimes.fajr, locationTz);
+            final actualSunrise =
+                TZDateTime.from(prayerTimes.sunrise, locationTz);
+            final actualDhuhr = TZDateTime.from(prayerTimes.dhuhr, locationTz);
+            final actualAsr = TZDateTime.from(prayerTimes.asr, locationTz);
+            final actualMaghrib =
+                TZDateTime.from(prayerTimes.maghrib, locationTz);
+            final actualIsha = TZDateTime.from(prayerTimes.isha, locationTz);
+
             if (variance == null) {
-              expect(
-                  DateFormat.jm()
-                      .format(tz.TZDateTime.from(prayerTimes.fajr, locationTz)),
-                  time['fajr']);
-              expect(
-                  DateFormat.jm().format(
-                      tz.TZDateTime.from(prayerTimes.sunrise, locationTz)),
-                  time['sunrise']);
-              expect(
-                  DateFormat.jm().format(
-                      tz.TZDateTime.from(prayerTimes.dhuhr, locationTz)),
-                  time['dhuhr']);
-              expect(
-                  DateFormat.jm()
-                      .format(tz.TZDateTime.from(prayerTimes.asr, locationTz)),
-                  time['asr']);
-              expect(
-                  DateFormat.jm().format(
-                      tz.TZDateTime.from(prayerTimes.maghrib, locationTz)),
-                  time['maghrib']);
-              expect(
-                  DateFormat.jm()
-                      .format(tz.TZDateTime.from(prayerTimes.isha, locationTz)),
-                  time['isha']);
+              expect(DateFormat.jm().format(actualFajr), time['fajr']);
+              expect(DateFormat.jm().format(actualSunrise), time['sunrise']);
+              expect(DateFormat.jm().format(actualDhuhr), time['dhuhr']);
+              expect(DateFormat.jm().format(actualAsr), time['asr']);
+              expect(DateFormat.jm().format(actualMaghrib), time['maghrib']);
+              expect(DateFormat.jm().format(actualIsha), time['isha']);
+            } else {
+              // Couldn't Implement, Because Couldn't Parse Time in Different Timezone From String.
+//              final expectedFajr = TZDateTime.from(DateFormat('y-d-m h:m')
+//                  .parse('${time['date']} ${time['fajr']}'), locationTz);
+////              final expectedSunrise = DateFormat.yMd()
+////                  .add_jm()
+////                  .parse('${dateString} ${time['sunrise']}');
+////              final expectedDhuhr = DateFormat.yMd()
+////                  .add_jm()
+////                  .parse('${dateString} ${time['dhuhr']}');
+////              final expectedAsr = DateFormat.yMd()
+////                  .add_jm()
+////                  .parse('${dateString} ${time['asr']}');
+////              final expectedMaghrib = DateFormat.yMd()
+////                  .add_jm()
+////                  .parse('${dateString} ${time['maghrib']}');
+////              final expectedIsha = DateFormat.yMd()
+////                  .add_jm()
+////                  .parse('${dateString} ${time['isha']}');
+//              print(actualFajr.difference(expectedFajr).inMinutes);
+//              expect(actualFajr.difference(expectedFajr).inMinutes <= variance, isTrue);
             }
           }
         });
