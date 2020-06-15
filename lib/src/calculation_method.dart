@@ -23,7 +23,7 @@ enum CalculationMethod {
   /// Uses Fajr and Isha angles of 18.2 degrees.
   dubai,
 
-  /// Moonsighting Committee
+  /// Moon Sighting Committee
   /// Uses a Fajr angle of 18 and an Isha angle of 18. Also uses seasonal adjustment values.
   moon_sighting_committee,
 
@@ -78,7 +78,7 @@ extension CalculationMethodExtensions on CalculationMethod {
       case CalculationMethod.umm_al_qura:
         {
           return CalculationParameters(
-              fajrAngle: 18.5, ishaAngle: 90, method: this);
+              fajrAngle: 18.5, ishaInterval: 90, method: this);
         }
       case CalculationMethod.dubai:
         {
@@ -109,7 +109,7 @@ extension CalculationMethodExtensions on CalculationMethod {
       case CalculationMethod.qatar:
         {
           return CalculationParameters(
-              fajrAngle: 18.0, ishaAngle: 90, method: this);
+              fajrAngle: 18.0, ishaInterval: 90, method: this);
         }
       case CalculationMethod.singapore:
         {
