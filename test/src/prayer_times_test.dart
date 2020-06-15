@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:adhan/adhan.dart';
+import 'package:adhan/src/data/calendar_util.dart';
+import 'package:adhan/src/extensions/datetime.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
@@ -131,4 +133,45 @@ void main() {
       }
     });
   });
+
+  test('Test PrayerTimes.daysSinceSolstice', () {
+    _daysSinceSolsticeTest(
+        11, /* year */ 2016, /* month */ 1, /* day */ 1, /* latitude */ 1);
+    _daysSinceSolsticeTest(
+        10, /* year */ 2015, /* month */ 12, /* day */ 31, /* latitude */ 1);
+    _daysSinceSolsticeTest(
+        10, /* year */ 2016, /* month */ 12, /* day */ 31, /* latitude */ 1);
+    _daysSinceSolsticeTest(
+        0, /* year */ 2016, /* month */ 12, /* day */ 21, /* latitude */ 1);
+    _daysSinceSolsticeTest(
+        1, /* year */ 2016, /* month */ 12, /* day */ 22, /* latitude */ 1);
+    _daysSinceSolsticeTest(
+        71, /* year */ 2016, /* month */ 3, /* day */ 1, /* latitude */ 1);
+    _daysSinceSolsticeTest(
+        70, /* year */ 2015, /* month */ 3, /* day */ 1, /* latitude */ 1);
+    _daysSinceSolsticeTest(
+        365, /* year */ 2016, /* month */ 12, /* day */ 20, /* latitude */ 1);
+    _daysSinceSolsticeTest(
+        364, /* year */ 2015, /* month */ 12, /* day */ 20, /* latitude */ 1);
+
+    _daysSinceSolsticeTest(
+        0, /* year */ 2015, /* month */ 6, /* day */ 21, /* latitude */ -1);
+    _daysSinceSolsticeTest(
+        0, /* year */ 2016, /* month */ 6, /* day */ 21, /* latitude */ -1);
+    _daysSinceSolsticeTest(
+        364, /* year */ 2015, /* month */ 6, /* day */ 20, /* latitude */ -1);
+    _daysSinceSolsticeTest(
+        365, /* year */ 2016, /* month */ 6, /* day */ 20, /* latitude */ -1);
+  });
+}
+
+void _daysSinceSolsticeTest(
+    int value, int year, int month, int day, double latitude) {
+  // For Northern Hemisphere start from December 21
+  // (DYY=0 for December 21, and counting forward, DYY=11 for January 1 and so on).
+  // For Southern Hemisphere start from June 21
+  // (DYY=0 for June 21, and counting forward)
+  final date = CalendarUtil.resolveTime(year, month, day);
+  expect(PrayerTimes.daysSinceSolstice(date.dayOfYear, date.year, latitude),
+      value);
 }
