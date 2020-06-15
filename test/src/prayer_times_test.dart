@@ -18,7 +18,7 @@ void main() {
     params.madhab = Madhab.hanafi;
 
     final prayerTimes =
-    PrayerTimes(kushtia, date, params, utcOffset: kushtiaUtcOffset);
+        PrayerTimes(kushtia, date, params, utcOffset: kushtiaUtcOffset);
 
     expect(DateFormat.jm().format(prayerTimes.fajr), '3:48 AM');
     expect(DateFormat.jm().format(prayerTimes.sunrise), '5:16 AM');
