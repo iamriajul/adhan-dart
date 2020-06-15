@@ -1,3 +1,8 @@
+## 1.1.10
+
+- fix: Umma Al Qura and Qatar Method Params Bug Fixes.
+- test: Test Prayer Times in Wide Range Locations From JSON Data.
+
 ## 1.1.9
 
 - Example updates
