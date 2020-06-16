@@ -79,7 +79,7 @@ void main() {
     params.madhab = Madhab.hanafi;
 
     final prayerTimes =
-    PrayerTimes.today(kushtia, params, utcOffset: kushtiaUtcOffset);
+        PrayerTimes.today(kushtia, params, utcOffset: kushtiaUtcOffset);
 
     final now = DateTime.now();
     expect(prayerTimes.dateComponents,
