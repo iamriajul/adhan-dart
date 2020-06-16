@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('Test CalculationParameters.nightPortions', () {
-    var parameters;
+    CalculationParameters parameters;
 
     parameters = CalculationParameters(fajrAngle: 18, ishaAngle: 18);
     parameters.highLatitudeRule = HighLatitudeRule.middle_of_the_night;
@@ -24,5 +24,8 @@ void main() {
         isTrue);
     expect(almostEqualD(parameters.nightPortions().isha, 15.0 / 60.0, 0.001),
         isTrue);
+
+    parameters.highLatitudeRule = null;
+    expect(() => parameters.nightPortions(), throwsFormatException);
   });
 }
