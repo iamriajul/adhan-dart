@@ -81,7 +81,7 @@ void main() {
     final prayerTimes =
         PrayerTimes.today(kushtia, params, utcOffset: kushtiaUtcOffset);
 
-    final now = DateTime.now();
+    final now = DateTime.now().toUtc().add(kushtiaUtcOffset);
     expect(prayerTimes.dateComponents,
         DateComponents(now.year, now.month, now.day));
     expect(prayerTimes.fajr.day, now.day);
