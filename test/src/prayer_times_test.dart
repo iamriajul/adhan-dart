@@ -72,6 +72,45 @@ void main() {
         '8:19 PM');
   });
 
+  test('Test PrayerTimes.currentPrayerByDateTime', () {
+    final kushtia = Coordinates(23.9088, 89.1220);
+    final kushtiaUtcOffset = Duration(hours: 6);
+    final date = DateComponents(2020, 6, 12);
+    final params = CalculationMethod.karachi.getParameters();
+    params.madhab = Madhab.hanafi;
+
+    final prayerTimes =
+        PrayerTimes(kushtia, date, params, utcOffset: kushtiaUtcOffset);
+
+    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.fajr), Prayer.fajr);
+    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.sunrise),
+        Prayer.sunrise);
+    expect(
+        prayerTimes.currentPrayerByDateTime(prayerTimes.dhuhr), Prayer.dhuhr);
+    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.asr), Prayer.asr);
+    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.maghrib),
+        Prayer.maghrib);
+    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.isha), Prayer.isha);
+  });
+
+  test('Test PrayerTimes.nextPrayerByDateTime', () {
+    final kushtia = Coordinates(23.9088, 89.1220);
+    final kushtiaUtcOffset = Duration(hours: 6);
+    final date = DateComponents(2020, 6, 12);
+    final params = CalculationMethod.karachi.getParameters();
+    params.madhab = Madhab.hanafi;
+
+    final prayerTimes =
+        PrayerTimes(kushtia, date, params, utcOffset: kushtiaUtcOffset);
+
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.fajr), Prayer.sunrise);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.sunrise), Prayer.dhuhr);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.dhuhr), Prayer.asr);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.asr), Prayer.maghrib);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.maghrib), Prayer.isha);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.isha), Prayer.none);
+  });
+
   test('Test PrayerTimes.today', () {
     final kushtia = Coordinates(23.9088, 89.1220);
     final kushtiaUtcOffset = Duration(hours: 6);
