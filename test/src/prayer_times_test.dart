@@ -30,6 +30,30 @@ void main() {
     expect(DateFormat.jm().format(prayerTimes.isha), '8:19 PM');
   });
 
+  test('Test PrayerTimes.timeForPrayer', () {
+    final kushtia = Coordinates(23.9088, 89.1220);
+    final kushtiaUtcOffset = Duration(hours: 6);
+    final date = DateComponents(2020, 6, 12);
+    final params = CalculationMethod.karachi.getParameters();
+    params.madhab = Madhab.hanafi;
+
+    final prayerTimes =
+        PrayerTimes(kushtia, date, params, utcOffset: kushtiaUtcOffset);
+
+    expect(DateFormat.jm().format(prayerTimes.timeForPrayer(Prayer.fajr)),
+        '3:48 AM');
+    expect(DateFormat.jm().format(prayerTimes.timeForPrayer(Prayer.sunrise)),
+        '5:16 AM');
+    expect(DateFormat.jm().format(prayerTimes.timeForPrayer(Prayer.dhuhr)),
+        '12:04 PM');
+    expect(DateFormat.jm().format(prayerTimes.timeForPrayer(Prayer.asr)),
+        '4:44 PM');
+    expect(DateFormat.jm().format(prayerTimes.timeForPrayer(Prayer.maghrib)),
+        '6:51 PM');
+    expect(DateFormat.jm().format(prayerTimes.timeForPrayer(Prayer.isha)),
+        '8:19 PM');
+  });
+
   test('Test Prayer Time in NewYork', () {
     // with custom timezone UTC Offset.
 
