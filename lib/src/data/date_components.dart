@@ -3,6 +3,14 @@ class DateComponents {
   final int month;
   final int day;
 
+  @override
+  bool operator ==(other) {
+    return other is DateComponents &&
+        year == other.year &&
+        month == other.month &&
+        day == other.day;
+  }
+
   DateComponents(this.year, this.month, this.day);
 
   /// Convenience method that returns a [DateComponents] from a given [DateTime]

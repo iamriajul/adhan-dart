@@ -30,6 +30,24 @@ void main() {
     expect(DateFormat.jm().format(prayerTimes.isha), '8:19 PM');
   });
 
+  test(
+      'Test PrayerTimes for Local Timezone Output When Not Setting utcOffset param',
+      () {
+    final kushtia = Coordinates(23.9088, 89.1220);
+    final date = DateComponents(2020, 6, 12);
+    final params = CalculationMethod.karachi.getParameters();
+    params.madhab = Madhab.hanafi;
+
+    final prayerTimes = PrayerTimes(kushtia, date, params);
+
+    expect(prayerTimes.fajr.isUtc, false);
+    expect(prayerTimes.sunrise.isUtc, false);
+    expect(prayerTimes.dhuhr.isUtc, false);
+    expect(prayerTimes.asr.isUtc, false);
+    expect(prayerTimes.maghrib.isUtc, false);
+    expect(prayerTimes.isha.isUtc, false);
+  });
+
   test('Test PrayerTimes.timeForPrayer', () {
     final kushtia = Coordinates(23.9088, 89.1220);
     final kushtiaUtcOffset = Duration(hours: 6);
@@ -54,7 +72,45 @@ void main() {
         '8:19 PM');
   });
 
-  test('Test Prayer Time in NewYork', () {
+  test('Test PrayerTimes.today', () {
+    final kushtia = Coordinates(23.9088, 89.1220);
+    final kushtiaUtcOffset = Duration(hours: 6);
+    final params = CalculationMethod.karachi.getParameters();
+    params.madhab = Madhab.hanafi;
+
+    final prayerTimes =
+    PrayerTimes.today(kushtia, params, utcOffset: kushtiaUtcOffset);
+
+    final now = DateTime.now();
+    expect(prayerTimes.dateComponents,
+        DateComponents(now.year, now.month, now.day));
+    expect(prayerTimes.fajr.day, now.day);
+    expect(prayerTimes.sunrise.day, now.day);
+    expect(prayerTimes.dhuhr.day, now.day);
+    expect(prayerTimes.asr.day, now.day);
+    expect(prayerTimes.maghrib.day, now.day);
+    expect(prayerTimes.isha.day, now.day);
+  });
+
+  test('Test PrayerTimes.utc', () {
+    final kushtia = Coordinates(23.9088, 89.1220);
+    final kushtiaUtcOffset = Duration(hours: 6);
+    final date = DateComponents(2020, 6, 12);
+    final params = CalculationMethod.karachi.getParameters();
+    params.madhab = Madhab.hanafi;
+
+    final prayerTimes =
+    PrayerTimes(kushtia, date, params, utcOffset: kushtiaUtcOffset);
+
+    expect(prayerTimes.fajr.isUtc, true);
+    expect(prayerTimes.sunrise.isUtc, true);
+    expect(prayerTimes.dhuhr.isUtc, true);
+    expect(prayerTimes.asr.isUtc, true);
+    expect(prayerTimes.maghrib.isUtc, true);
+    expect(prayerTimes.isha.isUtc, true);
+  });
+
+  test('Test Prayer Time in NewYork with utcOffset Factory', () {
     // with custom timezone UTC Offset.
 
     final newYork = Coordinates(35.7750, -78.6336);
@@ -63,7 +119,7 @@ void main() {
     final nyParams = CalculationMethod.north_america.getParameters();
     nyParams.madhab = Madhab.hanafi;
     final nyPrayerTimes =
-        PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
+    PrayerTimes.utcOffset(newYork, nyDate, nyParams, nyUtcOffset);
 
     expect(DateFormat.jm().format(nyPrayerTimes.fajr), '4:42 AM');
     expect(DateFormat.jm().format(nyPrayerTimes.sunrise), '6:08 AM');
