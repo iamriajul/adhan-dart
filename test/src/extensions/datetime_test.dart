@@ -11,4 +11,20 @@ void main() {
     // so 31 + 29 and + 2 = 62
     expect(myDate.dayOfYear, 62);
   });
+
+  test('Test copyWith with DateTime', () {
+    final myDate = DateTime(2020, 1, 1, 1, 1, 1, 1, 1);
+    final myDateCopied = myDate.copyWith(minute: 5, second: 5);
+
+    final myDateUtcCopied = myDate.toUtc().copyWith(minute: 5, second: 5);
+
+    expect(myDateCopied, DateTime(2020, 1, 1, 1, 5, 5, 1, 1));
+    expect(myDateCopied.isUtc, isFalse);
+
+    expect(myDateUtcCopied.isUtc, isTrue);
+
+    expect(myDate.copyWith(), DateTime(2020, 1, 1, 1, 1, 1, 1, 1));
+    expect(
+        myDate.toUtc().copyWith(), DateTime(2020, 1, 1, 1, 1, 1, 1, 1).toUtc());
+  });
 }
