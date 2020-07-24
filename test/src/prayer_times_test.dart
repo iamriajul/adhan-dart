@@ -265,6 +265,14 @@ void main() {
     expect(prayerTimes.nextPrayer() is Prayer, true);
   });
 
+  test('Test PrayerTimes MOON_SIGHTING_COMMITTEE and Latitude Greater Than 55',
+      () {
+    final newYork = Coordinates(55.7750, -78.6336);
+    final prayerTimes = PrayerTimes.today(
+        newYork, CalculationMethod.moon_sighting_committee.getParameters());
+    print(prayerTimes.fajr);
+  });
+
   test('Test PrayerTimes.daysSinceSolstice', () {
     _daysSinceSolsticeTest(
         11, /* year */ 2016, /* month */ 1, /* day */ 1, /* latitude */ 1);
