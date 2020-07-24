@@ -170,8 +170,7 @@ class PrayerTimes {
       if (calculationParameters.method ==
               CalculationMethod.moon_sighting_committee &&
           coordinates.latitude >= 55) {
-        tempFajr = sunriseComponents
-            .add(Duration(seconds: -1 * (night / 7000) as int));
+        tempFajr = sunriseComponents.add(Duration(seconds: -1 * night ~/ 7000));
       }
 
       final nightPortions = calculationParameters.nightPortions();
@@ -205,7 +204,7 @@ class PrayerTimes {
         if (calculationParameters.method ==
                 CalculationMethod.moon_sighting_committee &&
             coordinates.latitude >= 55) {
-          final nightFraction = night / 7000 as int;
+          final nightFraction = night ~/ 7000;
           tempIsha = sunsetComponents.add(Duration(seconds: nightFraction));
         }
 
