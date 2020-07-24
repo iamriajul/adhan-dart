@@ -156,7 +156,7 @@ void main() {
     final nyParams = CalculationMethod.north_america.getParameters();
     nyParams.madhab = Madhab.hanafi;
     final nyPrayerTimes =
-    PrayerTimes.utcOffset(newYork, nyDate, nyParams, nyUtcOffset);
+        PrayerTimes.utcOffset(newYork, nyDate, nyParams, nyUtcOffset);
 
     expect(DateFormat.jm().format(nyPrayerTimes.fajr), '4:42 AM');
     expect(DateFormat.jm().format(nyPrayerTimes.sunrise), '6:08 AM');
@@ -249,6 +249,20 @@ void main() {
         });
       }
     });
+  });
+
+  test('Test PrayerTimes.currentPrayer', () {
+    final newYork = Coordinates(35.7750, -78.6336);
+    final prayerTimes = PrayerTimes.today(
+        newYork, CalculationMethod.north_america.getParameters());
+    expect(prayerTimes.currentPrayer() is Prayer, true);
+  });
+
+  test('Test PrayerTimes.nextPrayer', () {
+    final newYork = Coordinates(35.7750, -78.6336);
+    final prayerTimes = PrayerTimes.today(
+        newYork, CalculationMethod.north_america.getParameters());
+    expect(prayerTimes.nextPrayer() is Prayer, true);
   });
 
   test('Test PrayerTimes.daysSinceSolstice', () {

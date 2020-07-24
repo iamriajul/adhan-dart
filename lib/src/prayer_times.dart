@@ -275,7 +275,7 @@ class PrayerTimes {
   }
 
   Prayer currentPrayer() {
-    return currentPrayerByDateTime(DateTime.now().toUtc());
+    return currentPrayerByDateTime(DateTime.now());
   }
 
   Prayer currentPrayerByDateTime(DateTime time) {
@@ -298,7 +298,7 @@ class PrayerTimes {
   }
 
   Prayer nextPrayer() {
-    return nextPrayerByDateTime(DateTime.now().toUtc());
+    return nextPrayerByDateTime(DateTime.now());
   }
 
   Prayer nextPrayerByDateTime(DateTime time) {
