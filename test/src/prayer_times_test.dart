@@ -273,6 +273,18 @@ void main() {
     print(prayerTimes.fajr);
   });
 
+  test('Test PrayerTimes Invalid Coordinates', () {
+    final invalidCoordinates = Coordinates(90.7750, -78.6336);
+    final prayerTimes = PrayerTimes.today(
+        invalidCoordinates, CalculationMethod.karachi.getParameters());
+    expect(prayerTimes.fajr, null);
+    expect(prayerTimes.sunrise, null);
+    expect(prayerTimes.dhuhr, null);
+    expect(prayerTimes.asr, null);
+    expect(prayerTimes.maghrib, null);
+    expect(prayerTimes.isha, null);
+  });
+
   test('Test PrayerTimes.daysSinceSolstice', () {
     _daysSinceSolsticeTest(
         11, /* year */ 2016, /* month */ 1, /* day */ 1, /* latitude */ 1);
