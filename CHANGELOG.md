@@ -1,3 +1,8 @@
+## 1.1.11
+
+- test: 100% test coverage!
+- docs: Readme Fixes.
+
 ## 1.1.10
 
 - fix: Umma Al Qura and Qatar Method Params Bug Fixes.
