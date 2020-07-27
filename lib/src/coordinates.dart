@@ -2,6 +2,8 @@ class Coordinates {
   final double latitude;
   final double longitude;
 
+  /// If you pass `true` with [validate] param then
+  /// it will throw [ArgumentError] if [latitude] or [longitude] is invalid.
   Coordinates(this.latitude, this.longitude, {bool validate = false}) {
     if (validate) {
       if (!(latitude.isFinite && latitude.abs() <= 90)) {
