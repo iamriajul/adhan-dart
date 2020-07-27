@@ -1,3 +1,7 @@
+## 1.1.12
+
+- feat: added Coordinates Validation Support [Optional].
+
 ## 1.1.11
 
 - test: 100% test coverage!
