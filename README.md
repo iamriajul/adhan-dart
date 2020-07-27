@@ -70,6 +70,13 @@ Create a `Coordinates` object with the latitude and longitude for the location y
 
 ```dart
 final coordinates = new Coordinates(35.78056, -78.6389);
+
+/// Coordinates Validation Support [Optional],
+/// to Support validation, use [validate: true] param, default: false
+
+final validateTrue = new Coordinates(91.78056, -78.6389, validate: true); // Invalid Coordinates, will throw ArgumentError
+
+final validateFalse = new Coordinates(91.78056, -78.6389, validate: false); // Invalid Coordinates, won't throw ArgumentError
 ```
 
 #### Date
