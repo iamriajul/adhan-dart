@@ -44,6 +44,9 @@ enum CalculationMethod {
   /// Uses a Fajr angle of 20 and an Isha angle of 18
   singapore,
 
+  /// Dianet
+  turkey,
+
   /// The default value for [CalculationParameters.method] when initializing a
   /// [CalculationParameters] object. Sets a Fajr angle of 0 and an Isha angle of 0.
   other
@@ -117,6 +120,13 @@ extension CalculationMethodExtensions on CalculationMethod {
                   fajrAngle: 20.0, ishaAngle: 18.0, method: this)
               .withMethodAdjustments(PrayerAdjustments(
                   fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
+        }
+      case CalculationMethod.turkey:
+        {
+          return CalculationParameters(
+                  fajrAngle: 18.0, ishaAngle: 17.0, method: this)
+              .withMethodAdjustments(PrayerAdjustments(
+                  fajr: 0, sunrise: -7, dhuhr: 5, asr: 4, maghrib: 7, isha: 0));
         }
       case CalculationMethod.other:
         {
