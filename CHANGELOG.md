@@ -1,3 +1,7 @@
+## 1.1.13
+
+- feat: added Turkey Method.
+
 ## 1.1.12
 
 - feat: added Coordinates Validation Support [Optional].
