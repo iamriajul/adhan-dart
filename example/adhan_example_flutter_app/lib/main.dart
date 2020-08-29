@@ -71,8 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
   PrayerTimes prayerTimes;
 
   @override
-  Future<void> initState() {
+  void initState() {
     getLocationData().then((locationData) {
+      if (mounted) {
+        return;
+      }
       if (locationData != null) {
         setState(() {
           prayerTimes = PrayerTimes(
