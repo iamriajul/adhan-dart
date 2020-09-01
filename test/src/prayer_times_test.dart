@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:adhan/adhan.dart';
 import 'package:adhan/src/data/calendar_util.dart';
 import 'package:adhan/src/extensions/datetime.dart';
+import 'package:dart_numerics/dart_numerics.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
@@ -224,26 +225,57 @@ void main() {
               expect(DateFormat.jm().format(actualMaghrib), time['maghrib']);
               expect(DateFormat.jm().format(actualIsha), time['isha']);
             } else {
-              // Couldn't Implement, Because Couldn't Parse Time in Different Timezone From String.
-//              final expectedFajr = TZDateTime.from(DateFormat('y-d-m h:m')
-//                  .parse('${time['date']} ${time['fajr']}'), locationTz);
-////              final expectedSunrise = DateFormat.yMd()
-////                  .add_jm()
-////                  .parse('${dateString} ${time['sunrise']}');
-////              final expectedDhuhr = DateFormat.yMd()
-////                  .add_jm()
-////                  .parse('${dateString} ${time['dhuhr']}');
-////              final expectedAsr = DateFormat.yMd()
-////                  .add_jm()
-////                  .parse('${dateString} ${time['asr']}');
-////              final expectedMaghrib = DateFormat.yMd()
-////                  .add_jm()
-////                  .parse('${dateString} ${time['maghrib']}');
-////              final expectedIsha = DateFormat.yMd()
-////                  .add_jm()
-////                  .parse('${dateString} ${time['isha']}');
-//              print(actualFajr.difference(expectedFajr).inMinutes);
-//              expect(actualFajr.difference(expectedFajr).inMinutes <= variance, isTrue);
+              // Fajr
+              final expectedFajr = parseTzDateTimeWithoutEffect(
+                  'y-M-d h:m a', '${time['date']} ${time['fajr']}', locationTz);
+              expect(
+                  isTimesDifferenceWithinVarianceMinutes(
+                      actualFajr, expectedFajr, variance),
+                  isTrue);
+
+              // Sunrise
+              final expectedSunrise = parseTzDateTimeWithoutEffect(
+                  'y-M-d h:m a',
+                  '${time['date']} ${time['sunrise']}',
+                  locationTz);
+              expect(
+                  isTimesDifferenceWithinVarianceMinutes(
+                      actualSunrise, expectedSunrise, variance),
+                  isTrue);
+
+              // Dhuhr
+              final expectedDhuhr = parseTzDateTimeWithoutEffect('y-M-d h:m a',
+                  '${time['date']} ${time['dhuhr']}', locationTz);
+              expect(
+                  isTimesDifferenceWithinVarianceMinutes(
+                      actualDhuhr, expectedDhuhr, variance),
+                  isTrue);
+
+              // Asr
+              final expectedAsr = parseTzDateTimeWithoutEffect(
+                  'y-M-d h:m a', '${time['date']} ${time['asr']}', locationTz);
+              expect(
+                  isTimesDifferenceWithinVarianceMinutes(
+                      actualAsr, expectedAsr, variance),
+                  isTrue);
+
+              // Maghrib
+              final expectedMaghrib = parseTzDateTimeWithoutEffect(
+                  'y-M-d h:m a',
+                  '${time['date']} ${time['maghrib']}',
+                  locationTz);
+              expect(
+                  isTimesDifferenceWithinVarianceMinutes(
+                      actualMaghrib, expectedMaghrib, variance),
+                  isTrue);
+
+              // Isha
+              final expectedIsha = parseTzDateTimeWithoutEffect(
+                  'y-M-d h:m a', '${time['date']} ${time['isha']}', locationTz);
+              expect(
+                  isTimesDifferenceWithinVarianceMinutes(
+                      actualIsha, expectedIsha, variance),
+                  isTrue);
             }
           }
         });
@@ -316,8 +348,8 @@ void main() {
   });
 }
 
-void _daysSinceSolsticeTest(
-    int value, int year, int month, int day, double latitude) {
+void _daysSinceSolsticeTest(int value, int year, int month, int day,
+    double latitude) {
   // For Northern Hemisphere start from December 21
   // (DYY=0 for December 21, and counting forward, DYY=11 for January 1 and so on).
   // For Southern Hemisphere start from June 21
@@ -325,4 +357,28 @@ void _daysSinceSolsticeTest(
   final date = CalendarUtil.resolveTime(year, month, day);
   expect(PrayerTimes.daysSinceSolstice(date.dayOfYear, date.year, latitude),
       value);
+}
+
+TZDateTime parseTzDateTimeWithoutEffect(String formatPattern,
+    String formattedDateTimeString, Location locationTz) {
+  final dateTimeObject = DateFormat(formatPattern).parse(
+      formattedDateTimeString);
+  return TZDateTime(
+      locationTz,
+      dateTimeObject.year,
+      dateTimeObject.month,
+      dateTimeObject.day,
+      dateTimeObject.hour,
+      dateTimeObject.minute,
+      dateTimeObject.second);
+}
+
+bool isTimesDifferenceWithinVarianceMinutes(TZDateTime time1, TZDateTime time2,
+    int variance) {
+  return time1
+      .difference(time2)
+      .inMinutes <= variance &&
+      (variance * -1) <= time1
+          .difference(time2)
+          .inMinutes;
 }
