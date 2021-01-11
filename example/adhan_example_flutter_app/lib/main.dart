@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     getLocationData().then((locationData) {
-      if (mounted) {
+      if (!mounted) {
         return;
       }
       if (locationData != null) {
