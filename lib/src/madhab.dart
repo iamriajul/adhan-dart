@@ -1,5 +1,6 @@
 import 'internal/shadow_length.dart';
 
+/// Madhab for determining how Asr is calculated
 enum Madhab {
   /// Shafi Madhab
   shafi,

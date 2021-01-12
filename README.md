@@ -164,6 +164,27 @@ final prayerTimes = PrayerTimes(coordinates, date, params, utcOffset: newYorkUtc
 | `nextPrayer` | Prayer enum instance |
 | `nextPrayerByDateTime` | Prayer enum instance |
 
+### Sunnah Times
+
+```dart
+final prayerTimes = PrayerTimes(coordinates, date, params, utcOffset: newYorkUtcOffset);
+final sunnahTimes = SunnahTimes(prayerTimes);
+// and then access
+/// The midpoint between Maghrib and Fajr
+sunnahTimes.middleOfTheNight
+/// The beginning of the last third of the period between Maghrib and Fajr,
+/// a recommended time to perform Qiyam
+sunnahTimes.lastThirdOfTheNight
+```
+
+### Qibla
+
+```dart
+final qibla = Qibla(coordinates);
+/// Qibla direction degree (Compass/Clockwise)
+qibla.direction
+```
+
 ## Features and bugs
 
 Please file feature requests and bugs at the [issue tracker][tracker].
@@ -171,6 +192,7 @@ Please file feature requests and bugs at the [issue tracker][tracker].
 [tracker]: https://github.com/iamriajul/adhan-dart/issues
 
 ## Inspired / Adopted From
+
 - [adhan-java](https://github.com/batoulapps/adhan-java/blob/master/README.md)
 
 # Adhan Java

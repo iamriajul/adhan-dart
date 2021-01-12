@@ -1,3 +1,4 @@
+/// Coordinates representing a particular place
 class Coordinates {
   final double latitude;
   final double longitude;

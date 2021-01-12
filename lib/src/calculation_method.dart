@@ -1,6 +1,7 @@
 import 'calculation_parameters.dart';
 import 'prayer_adjustments.dart';
 
+/// Standard calculation methods for calculating prayer times
 enum CalculationMethod {
   /// Muslim World League
   /// Uses Fajr angle of 18 and an Isha angle of 17

@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="test_coverage" type="BashConfigurationType" factoryName="Bash">
+    <module name="adhan-dart" />
+    <option name="INTERPRETER_OPTIONS" value="/c" />
+    <option name="INTERPRETER_PATH" value="C:/Windows/System32/cmd.exe" />
+    <option name="PROJECT_INTERPRETER" value="false" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="PARENT_ENVS" value="true" />
+    <option name="SCRIPT_NAME" value="pub" />
+    <option name="PARAMETERS" value="run test_coverage" />
+    <RunnerSettings bashdbVersion="Automatic" bashPathMapper="Automatic" RunnerId="pro.bashsupport.shDebugRunner" />
+    <method v="2" />
+  </configuration>
+</component>

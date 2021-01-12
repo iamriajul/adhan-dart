@@ -18,8 +18,9 @@ void main() {
 
   final prayerTimes = PrayerTimes.today(coordinates, params);
 
-  print(
-      '-----------------------------------------------------------------------------------');
+  final hr =
+      '-----------------------------------------------------------------------------------';
+  print(hr);
   print(
       "---Today's Prayer Times in Your Local Timezone(${prayerTimes.fajr.timeZoneName})---");
   print('Fajr: ${prayerTimes.fajr}');
@@ -28,4 +29,13 @@ void main() {
   print('Asr: ${prayerTimes.asr}');
   print('Maghrib: ${prayerTimes.maghrib}');
   print('Isha: ${prayerTimes.isha}');
+
+  final sunnahTimes = SunnahTimes(prayerTimes);
+  print(hr);
+  print('Middle Of The Night: ${sunnahTimes.middleOfTheNight}');
+  print('Last Third Of The Night: ${sunnahTimes.lastThirdOfTheNight}');
+
+  final qibla = Qibla(coordinates);
+  print(hr);
+  print('Qibla: ${qibla.direction}');
 }

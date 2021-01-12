@@ -348,8 +348,8 @@ void main() {
   });
 }
 
-void _daysSinceSolsticeTest(int value, int year, int month, int day,
-    double latitude) {
+void _daysSinceSolsticeTest(
+    int value, int year, int month, int day, double latitude) {
   // For Northern Hemisphere start from December 21
   // (DYY=0 for December 21, and counting forward, DYY=11 for January 1 and so on).
   // For Southern Hemisphere start from June 21
@@ -359,10 +359,10 @@ void _daysSinceSolsticeTest(int value, int year, int month, int day,
       value);
 }
 
-TZDateTime parseTzDateTimeWithoutEffect(String formatPattern,
-    String formattedDateTimeString, Location locationTz) {
-  final dateTimeObject = DateFormat(formatPattern).parse(
-      formattedDateTimeString);
+TZDateTime parseTzDateTimeWithoutEffect(
+    String formatPattern, String formattedDateTimeString, Location locationTz) {
+  final dateTimeObject =
+      DateFormat(formatPattern).parse(formattedDateTimeString);
   return TZDateTime(
       locationTz,
       dateTimeObject.year,
@@ -373,12 +373,8 @@ TZDateTime parseTzDateTimeWithoutEffect(String formatPattern,
       dateTimeObject.second);
 }
 
-bool isTimesDifferenceWithinVarianceMinutes(TZDateTime time1, TZDateTime time2,
-    int variance) {
-  return time1
-      .difference(time2)
-      .inMinutes <= variance &&
-      (variance * -1) <= time1
-          .difference(time2)
-          .inMinutes;
+bool isTimesDifferenceWithinVarianceMinutes(
+    TZDateTime time1, TZDateTime time2, int variance) {
+  return time1.difference(time2).inMinutes <= variance &&
+      (variance * -1) <= time1.difference(time2).inMinutes;
 }

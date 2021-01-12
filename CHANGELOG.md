@@ -1,3 +1,8 @@
+## 1.1.14
+
+- docs: added Documentation for SunnahTimes and Qibla.
+- docs: API Docs.
+
 ## 1.1.13
 
 - feat: added Turkey Method.

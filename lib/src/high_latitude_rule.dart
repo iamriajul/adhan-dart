@@ -1,3 +1,4 @@
+/// Rules for dealing with Fajr and Isha at places with high latitudes
 enum HighLatitudeRule {
   /// Fajr will never be earlier than the middle of the night, and Isha will never be later than
   /// the middle of the night.
