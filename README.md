@@ -103,6 +103,7 @@ params.adjustments.fajr = 2;
 | --------- | ----------- |
 | `method`    | CalculationMethod name |
 | `fajrAngle` | Angle of the sun used to calculate Fajr |
+| `maghribAngle` | The angle of the sun used to calculate Maghrib |
 | `ishaAngle` | Angle of the sun used to calculate Isha |
 | `ishaInterval` | Minutes after Maghrib (if set, the time for Isha will be Maghrib plus ishaInterval) |
 | `madhab` | Value from the Madhab object, used to calculate Asr |
