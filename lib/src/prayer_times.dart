@@ -7,8 +7,8 @@ import 'coordinates.dart';
 import 'data/date_components.dart';
 import 'data/time_components.dart';
 import 'internal/solar_time.dart';
-import 'prayer.dart';
 import 'madhab.dart';
+import 'prayer.dart';
 
 class PrayerTimes {
   DateTime _fajr;
@@ -147,7 +147,6 @@ class PrayerTimes {
     if (!error) {
       tempDhuhr = transit;
       tempSunrise = sunriseComponents;
-      tempMaghrib = sunsetComponents;
 
       timeComponents = TimeComponents.fromDouble(
           solarTime.afternoon(calculationParameters.madhab.getShadowLength()));
@@ -192,7 +191,7 @@ class PrayerTimes {
 
       // Isha calculation with check against safe value
       if (calculationParameters.ishaInterval > 0) {
-        tempIsha = tempMaghrib
+        tempIsha = sunsetComponents
             .add(Duration(seconds: calculationParameters.ishaInterval * 60));
       } else {
         timeComponents = TimeComponents.fromDouble(
@@ -222,6 +221,17 @@ class PrayerTimes {
         if (tempIsha == null || (tempIsha.isAfter(safeIsha))) {
           tempIsha = safeIsha;
         }
+      }
+    }
+
+    tempMaghrib = sunsetComponents;
+    if (calculationParameters.maghribAngle != null) {
+      final angleBasedMaghrib = TimeComponents.fromDouble(solarTime.hourAngle(
+              -1 * calculationParameters.maghribAngle, true))
+          .dateComponents(date);
+      if (sunsetComponents.isBefore(angleBasedMaghrib) &&
+          tempIsha.isAfter(angleBasedMaghrib)) {
+        tempMaghrib = angleBasedMaghrib;
       }
     }
 
