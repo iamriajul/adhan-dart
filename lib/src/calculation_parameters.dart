@@ -15,7 +15,7 @@ class CalculationParameters {
   /// The angle of the sun used to calculate fajr
   double fajrAngle;
 
-  /// The angle of the sun used to calculate maghrib
+  /// The angle of the sun used to calculate Maghrib
   double maghribAngle;
 
   /// The angle of the sun used to calculate isha
