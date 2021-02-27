@@ -47,6 +47,7 @@ void main() {
     expect(DateFormat.jm().format(prayerTimes.fajr), '5:14 AM');
     expect(DateFormat.jm().format(prayerTimes.sunrise), '6:37 AM');
     expect(DateFormat.jm().format(prayerTimes.dhuhr), '12:17 PM');
+    //Some websites may indicate 4:16 pm
     expect(DateFormat.jm().format(prayerTimes.asr), '4:17 PM');
     expect(DateFormat.jm().format(prayerTimes.maghrib), '6:16 PM');
     expect(DateFormat.jm().format(prayerTimes.isha), '7:03 PM');
