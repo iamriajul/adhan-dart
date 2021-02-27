@@ -4,13 +4,12 @@ import 'dart:io';
 import 'package:adhan/adhan.dart';
 import 'package:adhan/src/data/calendar_util.dart';
 import 'package:adhan/src/extensions/datetime.dart';
-import 'package:dart_numerics/dart_numerics.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:strings/strings.dart';
-import 'package:timezone/standalone.dart';
 import 'package:test/test.dart';
+import 'package:timezone/standalone.dart';
 
 void main() {
   test('Test Prayer Time in Kushtia', () {
@@ -29,6 +28,28 @@ void main() {
     expect(DateFormat.jm().format(prayerTimes.asr), '4:44 PM');
     expect(DateFormat.jm().format(prayerTimes.maghrib), '6:51 PM');
     expect(DateFormat.jm().format(prayerTimes.isha), '8:19 PM');
+  });
+
+  test('Test Prayer Time in Tehran', () {
+    final tehran = Coordinates(35.715298, 51.404343);
+    final tehranUtcOffset = Duration(hours: 3, minutes: 30);
+    final date = DateComponents(2021, 02, 27);
+    final params = CalculationMethod.tehran.getParameters();
+    params.madhab = Madhab.hanafi;
+
+    final prayerTimes = PrayerTimes(
+      tehran,
+      date,
+      params,
+      utcOffset: tehranUtcOffset,
+    );
+
+    expect(DateFormat.jm().format(prayerTimes.fajr), '5:14 AM');
+    expect(DateFormat.jm().format(prayerTimes.sunrise), '6:37 AM');
+    expect(DateFormat.jm().format(prayerTimes.dhuhr), '12:17 PM');
+    expect(DateFormat.jm().format(prayerTimes.asr), '4:17 PM');
+    expect(DateFormat.jm().format(prayerTimes.maghrib), '6:16 PM');
+    expect(DateFormat.jm().format(prayerTimes.isha), '7:03 PM');
   });
 
   test(
