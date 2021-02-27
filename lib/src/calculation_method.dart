@@ -48,6 +48,10 @@ enum CalculationMethod {
   /// Dianet
   turkey,
 
+  /// Institute of Geophysics, University of Tehran. Early Isha time with an angle of 14°. Slightly later Fajr time with an angle of 17.7°.
+  /// Calculates Maghrib based on the sun reaching an angle of 4.5° below the horizon.
+  tehran,
+
   /// The default value for [CalculationParameters.method] when initializing a
   /// [CalculationParameters] object. Sets a Fajr angle of 0 and an Isha angle of 0.
   other
@@ -128,6 +132,15 @@ extension CalculationMethodExtensions on CalculationMethod {
                   fajrAngle: 18.0, ishaAngle: 17.0, method: this)
               .withMethodAdjustments(PrayerAdjustments(
                   fajr: 0, sunrise: -7, dhuhr: 5, asr: 4, maghrib: 7, isha: 0));
+        }
+      case CalculationMethod.tehran:
+        {
+          return CalculationParameters(
+            fajrAngle: 17.7,
+            ishaAngle: 14,
+            maghribAngle: 4.5,
+            method: this,
+          );
         }
       case CalculationMethod.other:
         {
