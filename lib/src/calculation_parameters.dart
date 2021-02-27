@@ -15,6 +15,9 @@ class CalculationParameters {
   /// The angle of the sun used to calculate fajr
   double fajrAngle;
 
+  /// The angle of the sun used to calculate maghrib
+  double maghribAngle;
+
   /// The angle of the sun used to calculate isha
   double ishaAngle;
 
@@ -36,6 +39,7 @@ class CalculationParameters {
   CalculationParameters(
       {this.method,
       this.fajrAngle,
+      this.maghribAngle,
       this.ishaAngle,
       this.ishaInterval,
       this.madhab,
