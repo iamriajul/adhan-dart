@@ -1,3 +1,7 @@
+## 1.1.15
+
+- feat: added support for maghribAngle. PR#13
+
 ## 1.1.14
 
 - docs: added Documentation for SunnahTimes and Qibla.
