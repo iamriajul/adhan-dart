@@ -331,8 +331,10 @@ void main() {
 
   test('Test PrayerTimes Invalid Coordinates', () {
     final invalidCoordinates = Coordinates(90.7750, -78.6336);
-    expect(() => PrayerTimes.today(
-        invalidCoordinates, CalculationMethod.karachi.getParameters()), throwsArgumentError);
+    expect(
+        () => PrayerTimes.today(
+            invalidCoordinates, CalculationMethod.karachi.getParameters()),
+        throwsArgumentError);
   });
 
   test('Test PrayerTimes.daysSinceSolstice', () {

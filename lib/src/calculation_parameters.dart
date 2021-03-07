@@ -45,9 +45,9 @@ class CalculationParameters {
       this.madhab = Madhab.shafi,
       this.highLatitudeRule = HighLatitudeRule.middle_of_the_night,
       PrayerAdjustments? adjustments,
-      PrayerAdjustments? methodAdjustments
-    }) : adjustments = adjustments ?? PrayerAdjustments(),
-          methodAdjustments = methodAdjustments ?? PrayerAdjustments();
+      PrayerAdjustments? methodAdjustments})
+      : adjustments = adjustments ?? PrayerAdjustments(),
+        methodAdjustments = methodAdjustments ?? PrayerAdjustments();
 
   /// Set the method adjustments for the current calculation parameters
   /// [adjustments] the prayer adjustments

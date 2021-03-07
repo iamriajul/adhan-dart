@@ -168,8 +168,9 @@ class PrayerTimes {
 
       if (calculationParameters.method ==
               CalculationMethod.moon_sighting_committee &&
-          coordinates.latitude>= 55) {
-        tempFajr = sunriseComponents!.add(Duration(seconds: -1 * night ~/ 7000));
+          coordinates.latitude >= 55) {
+        tempFajr =
+            sunriseComponents!.add(Duration(seconds: -1 * night ~/ 7000));
       }
 
       final nightPortions = calculationParameters.nightPortions();
@@ -182,7 +183,8 @@ class PrayerTimes {
       } else {
         final portion = nightPortions.fajr;
         final nightFraction = portion * night ~/ 1000;
-        safeFajr = sunriseComponents!.add(Duration(seconds: -1 * nightFraction));
+        safeFajr =
+            sunriseComponents!.add(Duration(seconds: -1 * nightFraction));
       }
 
       if (tempFajr == null || tempFajr.isBefore(safeFajr)) {
@@ -190,9 +192,9 @@ class PrayerTimes {
       }
 
       // Isha calculation with check against safe value
-      if (calculationParameters.ishaInterval> 0) {
+      if (calculationParameters.ishaInterval > 0) {
         tempIsha = sunsetComponents
-            .add(Duration(seconds: calculationParameters.ishaInterval* 60));
+            .add(Duration(seconds: calculationParameters.ishaInterval * 60));
       } else {
         timeComponents = TimeComponents.fromDouble(
             solarTime.hourAngle(-calculationParameters.ishaAngle!, true));
@@ -202,7 +204,7 @@ class PrayerTimes {
 
         if (calculationParameters.method ==
                 CalculationMethod.moon_sighting_committee &&
-            coordinates.latitude>= 55) {
+            coordinates.latitude >= 55) {
           final nightFraction = night ~/ 7000;
           tempIsha = sunsetComponents.add(Duration(seconds: nightFraction));
         }
@@ -235,8 +237,13 @@ class PrayerTimes {
       }
     }
 
-    if (error || tempAsr == null || tempFajr == null || tempSunrise == null
-      || tempDhuhr == null || tempIsha == null || tempMaghrib == null) {
+    if (error ||
+        tempAsr == null ||
+        tempFajr == null ||
+        tempSunrise == null ||
+        tempDhuhr == null ||
+        tempIsha == null ||
+        tempMaghrib == null) {
       throw ArgumentError('Invalid Coordinates');
     } else {
       // Assign final times to public struct members with all offsets
