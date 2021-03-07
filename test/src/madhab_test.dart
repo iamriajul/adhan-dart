@@ -10,7 +10,7 @@ void main() {
     expect(hanafiMadhab1 == hanafiMadhab2, isTrue);
     expect(hanafiMadhab1 == shafiMadhab1, isFalse);
 
-    Madhab madhab;
+    Madhab? madhab;
     expect(() => madhab.getShadowLength(), throwsFormatException);
   });
 }

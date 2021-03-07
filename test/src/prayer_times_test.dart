@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -329,14 +331,8 @@ void main() {
 
   test('Test PrayerTimes Invalid Coordinates', () {
     final invalidCoordinates = Coordinates(90.7750, -78.6336);
-    final prayerTimes = PrayerTimes.today(
-        invalidCoordinates, CalculationMethod.karachi.getParameters());
-    expect(prayerTimes.fajr, null);
-    expect(prayerTimes.sunrise, null);
-    expect(prayerTimes.dhuhr, null);
-    expect(prayerTimes.asr, null);
-    expect(prayerTimes.maghrib, null);
-    expect(prayerTimes.isha, null);
+    expect(() => PrayerTimes.today(
+        invalidCoordinates, CalculationMethod.karachi.getParameters()), throwsArgumentError);
   });
 
   test('Test PrayerTimes.daysSinceSolstice', () {

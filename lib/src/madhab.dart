@@ -9,7 +9,7 @@ enum Madhab {
   hanafi
 }
 
-extension MadhabExtensions on Madhab {
+extension MadhabExtensions on Madhab? {
   ShadowLength getShadowLength() {
     switch (this) {
       case Madhab.shafi:

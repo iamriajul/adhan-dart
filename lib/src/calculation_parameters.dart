@@ -13,13 +13,13 @@ class CalculationParameters {
   CalculationMethod method;
 
   /// The angle of the sun used to calculate fajr
-  double fajrAngle;
+  double? fajrAngle;
 
   /// The angle of the sun used to calculate Maghrib
-  double maghribAngle;
+  double? maghribAngle;
 
   /// The angle of the sun used to calculate isha
-  double ishaAngle;
+  double? ishaAngle;
 
   /// Minutes after Maghrib (if set, the time for Isha will be Maghrib plus IshaInterval)
   int ishaInterval;
@@ -37,22 +37,17 @@ class CalculationParameters {
   PrayerAdjustments methodAdjustments;
 
   CalculationParameters(
-      {this.method,
+      {this.method = CalculationMethod.other,
       this.fajrAngle,
       this.maghribAngle,
       this.ishaAngle,
-      this.ishaInterval,
-      this.madhab,
-      this.highLatitudeRule,
-      this.adjustments,
-      this.methodAdjustments}) {
-    method ??= CalculationMethod.other;
-    ishaInterval ??= 0;
-    madhab ??= Madhab.shafi;
-    highLatitudeRule ??= HighLatitudeRule.middle_of_the_night;
-    adjustments ??= PrayerAdjustments();
-    methodAdjustments ??= PrayerAdjustments();
-  }
+      this.ishaInterval = 0,
+      this.madhab = Madhab.shafi,
+      this.highLatitudeRule = HighLatitudeRule.middle_of_the_night,
+      PrayerAdjustments? adjustments,
+      PrayerAdjustments? methodAdjustments
+    }) : adjustments = adjustments ?? PrayerAdjustments(),
+          methodAdjustments = methodAdjustments ?? PrayerAdjustments();
 
   /// Set the method adjustments for the current calculation parameters
   /// [adjustments] the prayer adjustments
@@ -74,7 +69,7 @@ class CalculationParameters {
         }
       case HighLatitudeRule.twilight_angle:
         {
-          return _NightPortions(fajrAngle / 60.0, ishaAngle / 60.0);
+          return _NightPortions(fajrAngle! / 60.0, ishaAngle! / 60.0);
         }
       default:
         {

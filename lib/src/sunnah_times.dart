@@ -4,14 +4,14 @@ import 'data/date_components.dart';
 
 class SunnahTimes {
   /// The midpoint between Maghrib and Fajr
-  DateTime _middleOfTheNight;
+  late DateTime _middleOfTheNight;
 
   /// The midpoint between Maghrib and Fajr
   DateTime get middleOfTheNight => _middleOfTheNight;
 
   /// The beginning of the last third of the period between Maghrib and Fajr,
   /// a recommended time to perform Qiyam
-  DateTime _lastThirdOfTheNight;
+  late DateTime _lastThirdOfTheNight;
 
   /// The beginning of the last third of the period between Maghrib and Fajr,
   /// a recommended time to perform Qiyam
