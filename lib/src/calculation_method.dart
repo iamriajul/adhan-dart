@@ -72,7 +72,7 @@ extension CalculationMethodExtensions on CalculationMethod {
       case CalculationMethod.egyptian:
         {
           return CalculationParameters(
-                  fajrAngle: 20.0, ishaAngle: 18.0, method: this)
+                  fajrAngle: 19.5, ishaAngle: 17.5, method: this)
               .withMethodAdjustments(PrayerAdjustments(
                   fajr: 0, sunrise: 0, dhuhr: 1, asr: 0, maghrib: 0, isha: 0));
         }
