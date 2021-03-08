@@ -13,7 +13,7 @@ class CalculationParameters {
   CalculationMethod method;
 
   /// The angle of the sun used to calculate fajr
-  double? fajrAngle;
+  double fajrAngle;
 
   /// The angle of the sun used to calculate Maghrib
   double? maghribAngle;
@@ -38,7 +38,7 @@ class CalculationParameters {
 
   CalculationParameters(
       {this.method = CalculationMethod.other,
-      this.fajrAngle,
+      required this.fajrAngle,
       this.maghribAngle,
       this.ishaAngle,
       this.ishaInterval = 0,
@@ -69,7 +69,10 @@ class CalculationParameters {
         }
       case HighLatitudeRule.twilight_angle:
         {
-          return _NightPortions(fajrAngle! / 60.0, ishaAngle! / 60.0);
+          if (ishaAngle == null) {
+            throw FormatException('ishaAngle\'s value isn\'t define');
+          }
+          return _NightPortions(fajrAngle / 60.0, ishaAngle! / 60.0);
         }
       default:
         {
