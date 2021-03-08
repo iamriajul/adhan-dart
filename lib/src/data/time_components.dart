@@ -9,7 +9,7 @@ class TimeComponents {
 
   static TimeComponents fromDouble(double value) {
     if (value.isInfinite || value.isNaN) {
-       throw ArgumentError('value should not be infinite or NaN');
+      throw ArgumentError('value should not be infinite or NaN');
     }
 
     final hours = value.floor();
