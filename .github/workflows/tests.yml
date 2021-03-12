@@ -16,6 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       - name: Install dependencies
         run: pub get
       - name: Run test with coverage
