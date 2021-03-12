@@ -20,7 +20,7 @@ jobs:
         run: pub get
       - name: Run test with coverage
         run: pub run test --coverage coverage
-      - uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          files: ./coverage/lcov.info
+      - name: upload reports to codecov
+        run: curl -s https://codecov.io/bash | bash
+        env:
+          CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
