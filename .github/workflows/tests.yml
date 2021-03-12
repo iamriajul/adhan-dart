@@ -16,11 +16,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       - name: Install dependencies
         run: pub get
       - name: Run test with coverage
         run: pub run test --coverage coverage
       - name: upload reports to codecov
-        run: curl -s https://codecov.io/bash | bash -f coverage/lcov.info
+        run: curl -s https://codecov.io/bash | bash
         env:
           CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
