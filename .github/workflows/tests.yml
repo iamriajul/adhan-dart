@@ -15,14 +15,14 @@ jobs:
       image:  google/dart:latest
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
-      - name: Install dependencies
-        run: pub get
-      - name: Run test with coverage
-        run: pub run test --coverage coverage
-      - name: upload reports to codecov
-        run: curl -s https://codecov.io/bash | bash
-        env:
-          CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: pub get
+    - name: Run test with coverage 
+      run: pub run test --coverage coverage
+    - name: Generate lcov.info for test coverage
+      run: pub global activate coverage && pub global run coverage:format_coverage -i coverage/test -o coverage/lcov.info --lcov
+    - name: upload reports to codecov
+      run: curl -s https://codecov.io/bash | bash
+      env:
+        CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
