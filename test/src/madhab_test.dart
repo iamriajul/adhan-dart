@@ -1,4 +1,5 @@
 import 'package:adhan/adhan.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -11,6 +12,6 @@ void main() {
     expect(hanafiMadhab1 == shafiMadhab1, isFalse);
 
     Madhab? madhab;
-    expect(() => madhab.getShadowLength(), throwsFormatException);
+    expect(madhab?.getShadowLength(), null);
   });
 }

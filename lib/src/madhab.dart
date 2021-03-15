@@ -9,7 +9,7 @@ enum Madhab {
   hanafi
 }
 
-extension MadhabExtensions on Madhab? {
+extension MadhabExtensions on Madhab {
   ShadowLength getShadowLength() {
     switch (this) {
       case Madhab.shafi:
@@ -19,10 +19,6 @@ extension MadhabExtensions on Madhab? {
       case Madhab.hanafi:
         {
           return ShadowLength.double;
-        }
-      default:
-        {
-          throw FormatException('Invalid Madhab');
         }
     }
   }
