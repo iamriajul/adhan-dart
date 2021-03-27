@@ -1,3 +1,8 @@
+## 2.0.0-nullsafety.0
+
+- breaking: Migrate to null safety.
+- feat: throws ArgumentError instead of null for invalid co-ordinates
+
 ## 1.1.15
 
 - feat: added support for maghribAngle. PR#13

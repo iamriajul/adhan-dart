@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:adhan/adhan.dart';
 import 'package:dart_numerics/dart_numerics.dart';
 import 'package:test/test.dart';

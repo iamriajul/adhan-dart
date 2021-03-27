@@ -20,10 +20,6 @@ extension MadhabExtensions on Madhab {
         {
           return ShadowLength.double;
         }
-      default:
-        {
-          throw FormatException('Invalid Madhab');
-        }
     }
   }
 }
