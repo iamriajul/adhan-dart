@@ -1,5 +1,5 @@
 # Adhan Dart / Flutter
-[![Pub](https://img.shields.io/pub/v/adhan?include_prereleases)](https://pub.dev/packages/adhan/versions/2.0.0-nullsafety.0)
+[![Pub](https://img.shields.io/pub/v/adhan?include_prereleases)](https://pub.dev/packages/adhan/versions/2.0.0-nullsafety.1)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/iamriajul/adhan-dart/tests/v2)](https://github.com/iamriajul/adhan-dart/actions?query=branch:v2)
 [![codecov](https://codecov.io/gh/iamriajul/adhan-dart/branch/v2/graph/badge.svg)](https://codecov.io/gh/iamriajul/adhan-dart/branch/v2)
 [![GitHub issues](https://img.shields.io/github/issues/iamriajul/adhan-dart)][tracker]
