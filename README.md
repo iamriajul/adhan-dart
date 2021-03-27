@@ -1,7 +1,7 @@
 # Adhan Dart / Flutter
-[![Pub](https://img.shields.io/pub/v/adhan.svg)](https://pub.dev/packages/adhan)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/iamriajul/adhan-dart/tests)](https://github.com/iamriajul/adhan-dart/actions)
-[![codecov](https://codecov.io/gh/iamriajul/adhan-dart/branch/master/graph/badge.svg)](https://codecov.io/gh/iamriajul/adhan-dart)
+[![Pub](https://img.shields.io/pub/v/adhan?include_prereleases)](https://pub.dev/packages/adhan/versions/2.0.0-nullsafety.0)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/iamriajul/adhan-dart/tests/v2)](https://github.com/iamriajul/adhan-dart/actions?query=branch:v2)
+[![codecov](https://codecov.io/gh/iamriajul/adhan-dart/branch/v2/graph/badge.svg)](https://codecov.io/gh/iamriajul/adhan-dart/branch/v2)
 [![GitHub issues](https://img.shields.io/github/issues/iamriajul/adhan-dart)][tracker]
 [![Star on GitHub](https://img.shields.io/github/stars/iamriajul/adhan-dart.svg?style=flat&logo=github&colorB=deeppink&label=stars)][repo]
 [![GitHub top language](https://img.shields.io/github/languages/top/iamriajul/adhan-dart)][repo]
