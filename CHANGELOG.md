@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety.1
+
+- docs: update.
+
 ## 2.0.0-nullsafety.0
 
 - breaking: Migrate to null safety.
