@@ -22,8 +22,8 @@ void main() {
     expect(params.method, CalculationMethod.muslim_world_league);
 
     params = CalculationMethod.egyptian.getParameters();
-    expect(almostEqualD(params.fajrAngle, 20, 0.000001), isTrue);
-    expect(almostEqualD(params.ishaAngle, 18, 0.000001), isTrue);
+    expect(almostEqualD(params.fajrAngle, 19.5, 0.000001), isTrue);
+    expect(almostEqualD(params.ishaAngle, 17.5, 0.000001), isTrue);
     expect(params.ishaInterval, 0);
     expect(params.method, CalculationMethod.egyptian);
 
