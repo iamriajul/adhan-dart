@@ -1,4 +1,8 @@
 image: gitpod/workspace-flutter
   
 tasks:
-  - init: 'dart pub get && dart dart run'
+  - init: 'dart pub get && dart run'
+
+ports:
+  - port: 8080
+    onOpen: open-preview
