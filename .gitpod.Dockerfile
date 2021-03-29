@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full
+FROM ubuntu:latest
 
 RUN brew tap dart-lang/dart && brew install dart
 
