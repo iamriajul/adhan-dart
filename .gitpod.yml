@@ -1,5 +1,4 @@
-image:
-  file: .gitpod.Dockerfile
+image: gitpod/workspace-flutter
   
 tasks:
   - init: 'pub get && pub run adhan'
