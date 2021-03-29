@@ -1,0 +1,18 @@
+image: gitpod/workspace-flutter
+
+tasks:
+  # Get dependencies & run bin
+  - init: 'dart pub get && dart run'
+  
+  # Run flutter_example
+  - command: 'cd ./example/adhan_example_flutter_app && flutter pub get && flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0'
+
+ports:
+  - port: 8080
+    # Open in browser for viewing the flutter app without issue.
+    onOpen: open-preview
+
+vscode:
+  extensions:
+    - dart-code.dart-code@3.20.1:gKwMOzlkrgxrb7aPrMdQ8w==
+    - dart-code.flutter@3.20.0:fCUgJ2byoDmsmQf0Dq12+g==
