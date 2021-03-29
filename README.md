@@ -5,6 +5,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/iamriajul/adhan-dart)][tracker]
 [![Star on GitHub](https://img.shields.io/github/stars/iamriajul/adhan-dart.svg?style=flat&logo=github&colorB=deeppink&label=stars)][repo]
 [![GitHub top language](https://img.shields.io/github/languages/top/iamriajul/adhan-dart)][repo]
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/iamriajul/adhan-dart/tree/v2)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://github.com/iamriajul/adhan-dart/blob/master/LICENSE)
 
 [repo]: https://github.com/iamriajul/adhan-dart
