@@ -2,6 +2,7 @@ image: gitpod/workspace-flutter
   
 tasks:
   - init: 'dart pub get && dart run'
+  - command: 'cd ./example/adhan_example_flutter_app && flutter pub get && flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0'
 
 ports:
   - port: 8080
