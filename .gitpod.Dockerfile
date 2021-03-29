@@ -6,7 +6,7 @@ USER root
 
 RUN apt-get update
 
-RUN apt-get -y install snapd
+RUN apt-get -y install snapd && systemctl unmask snapd.service && systemctl enable snapd.service && systemctl start snapd.service
 
 RUN snap install flutter --classic
 
