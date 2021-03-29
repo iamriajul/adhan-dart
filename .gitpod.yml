@@ -1,4 +1,4 @@
 image: gitpod/workspace-flutter
   
 tasks:
-  - init: 'pub get && pub run adhan'
+  - init: 'dart pub get && dart dart run'
