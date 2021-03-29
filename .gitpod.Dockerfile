@@ -4,6 +4,6 @@ RUN brew tap dart-lang/dart && brew install dart
 
 USER root
 
-RUN apt install snapd
+RUN apt install snapd -y
 
-run snap install flutter --classic
+RUN snap install flutter --classic
