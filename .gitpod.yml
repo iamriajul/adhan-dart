@@ -1,0 +1,2 @@
+tasks:
+  - init: 'pub get && pub run adhan'
