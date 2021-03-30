@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Environment(please complete the following information):**
  - Dart Language Version: [e.g. Dart 2.1]
  - Flutter Version: [if applicable, e.g. Flutter 1.9.1]
- - Adhan-Dart Version: [e.g. 1.1.15]
+ - Adhan-Dart Version: [e.g. 1.1.15, 2.0.0-nullsafety.1]
 
 **Additional context**
 Add any other context about the problem here.
