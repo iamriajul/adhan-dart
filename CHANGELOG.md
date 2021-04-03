@@ -1,3 +1,7 @@
+## 1.1.16
+
+- fix: exclude MadhabExtensions from exporting. **madhab.getShadowLength()** should not accessible outside.
+
 ## 1.1.15
 
 - feat: added support for maghribAngle. PR#13
