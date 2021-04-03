@@ -9,18 +9,18 @@ class SolarCoordinates {
   /// The declination of the sun, the angle between
   /// the rays of the Sun and the plane of the Earth's
   /// equator, in degrees.
-  double _declination;
+  late double _declination;
   double get declination => _declination;
 
   ///  Right ascension of the Sun, the angular distance on the
   /// celestial equator from the vernal equinox to the hour circle,
   /// in degrees.
-  double _rightAscension;
+  late double _rightAscension;
   double get rightAscension => _rightAscension;
 
   ///  Apparent sidereal time, the hour angle of the vernal
   /// equinox, in degrees.
-  double _apparentSiderealTime;
+  late double _apparentSiderealTime;
   double get apparentSiderealTime => _apparentSiderealTime;
 
   SolarCoordinates(double julianDay) {

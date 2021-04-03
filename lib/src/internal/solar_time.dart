@@ -8,20 +8,20 @@ import 'shadow_length.dart';
 import 'solar_coordinates.dart';
 
 class SolarTime {
-  double _transit;
+  late double _transit;
   double get transit => _transit;
 
-  double _sunrise;
+  late double _sunrise;
   double get sunrise => _sunrise;
 
-  double _sunset;
+  late double _sunset;
   double get sunset => _sunset;
 
-  Coordinates _observer;
-  SolarCoordinates _solar;
-  SolarCoordinates _prevSolar;
-  SolarCoordinates _nextSolar;
-  double _approximateTransit;
+  late Coordinates _observer;
+  late SolarCoordinates _solar;
+  late SolarCoordinates _prevSolar;
+  late SolarCoordinates _nextSolar;
+  late double _approximateTransit;
 
   SolarTime(DateTime _today, Coordinates coordinates) {
     final today = _today;
