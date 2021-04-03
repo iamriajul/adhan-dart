@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety.2
+
+- fix: exclude MadhabExtensions from exporting. **madhab.getShadowLength()** should not accessible outside.
+
 ## 1.1.16
 
 - fix: exclude MadhabExtensions from exporting. **madhab.getShadowLength()** should not accessible outside.
