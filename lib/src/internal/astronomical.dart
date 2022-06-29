@@ -226,7 +226,9 @@ class Astronomical {
     final term1 = sin(radians(h0)) -
         (sin(radians(coordinates.latitude)) * sin(radians(delta2)));
     final term2 = cos(radians(coordinates.latitude)) * cos(radians(delta2));
-    final H0 = degrees(acos(term1 / term2));
+    final value = term1/term2;
+    final deg = value > 1 ? 1 : value < -1 ? -1 : value;
+    final H0 = degrees(acos(deg));
     final m = afterTransit ? m0 + (H0 / 360) : m0 - (H0 / 360);
     final theta = DoubleUtil.unwindAngle(theta0 + (360.985647 * m));
     final alpha = DoubleUtil.unwindAngle(interpolateAngles(
