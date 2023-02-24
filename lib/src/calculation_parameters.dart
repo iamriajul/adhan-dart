@@ -10,31 +10,31 @@ import 'prayer_adjustments.dart';
 /// [CalculationMethod].
 class CalculationParameters {
   /// The method used to do the calculation
-  CalculationMethod method;
+  CalculationMethod? method;
 
   /// The angle of the sun used to calculate fajr
-  double fajrAngle;
+  double? fajrAngle;
 
   /// The angle of the sun used to calculate Maghrib
-  double maghribAngle;
+  double? maghribAngle;
 
   /// The angle of the sun used to calculate isha
-  double ishaAngle;
+  double? ishaAngle;
 
   /// Minutes after Maghrib (if set, the time for Isha will be Maghrib plus IshaInterval)
-  int ishaInterval;
+  int? ishaInterval;
 
   /// The madhab used to calculate Asr
-  Madhab madhab;
+  Madhab? madhab;
 
   /// Rules for placing bounds on Fajr and Isha for high latitude areas
-  HighLatitudeRule highLatitudeRule;
+  HighLatitudeRule? highLatitudeRule;
 
   /// Used to optionally add or subtract a set amount of time from each prayer time
-  PrayerAdjustments adjustments;
+  PrayerAdjustments? adjustments;
 
   /// Used for method adjustments
-  PrayerAdjustments methodAdjustments;
+  PrayerAdjustments? methodAdjustments;
 
   CalculationParameters(
       {this.method,
@@ -74,7 +74,7 @@ class CalculationParameters {
         }
       case HighLatitudeRule.twilight_angle:
         {
-          return _NightPortions(fajrAngle / 60.0, ishaAngle / 60.0);
+          return _NightPortions(fajrAngle! / 60.0, ishaAngle! / 60.0);
         }
       default:
         {
