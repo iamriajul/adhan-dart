@@ -1,3 +1,7 @@
+## 2.0.0
+
+- release: stable version. with null safety and dart 3 support.
+
 ## 2.0.0-nullsafety.2
 
 - fix: exclude MadhabExtensions from exporting. **madhab.getShadowLength()** should not accessible outside.
