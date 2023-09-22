@@ -24,8 +24,6 @@ Implementations of Adhan in other languages can be found in the parent repo [Adh
 
 ## Usage
 
-#### [`v2`](https://github.com/iamriajul/adhan-dart/tree/v2) branch supporting nullsafety.
-
 A simple usage example:
 
 ```dart
