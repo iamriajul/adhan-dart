@@ -131,7 +131,8 @@ params.adjustments.fajr = 2;
 | `moonsighting_committee` | Moonsighting Committee. Fajr angle: 18, Isha angle: 18. Also uses seasonal adjustment values. |
 | `singapore` | Method used by Singapore. Fajr angle: 20, Isha angle: 18. |
 | `north_america` | Referred to as the ISNA method. This method is included for completeness but is not recommended. Fajr angle: 15, Isha angle: 15 |
-| `kuwait` | Kuwait. Fajr angle: 18, Isha angle: 17.5 |
+| `turkey` | Turkey. Fajr angle: 18, Isha angle: 17 |
+| `tehran` | Tehran. Fajr angle: 17.7, Isha angle: 14, Maghrib Angle: 4.5 |
 | `other` | Fajr angle: 0, Isha angle: 0. This is the default value for `method` when initializing a `CalculationParameters` object. |
 
 **Madhab**
