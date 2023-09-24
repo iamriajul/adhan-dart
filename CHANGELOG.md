@@ -1,3 +1,7 @@
+## 2.0.0+1
+
+- chore: update readme.
+
 ## 2.0.0
 
 - release: stable version. with null safety and dart 3 support.
