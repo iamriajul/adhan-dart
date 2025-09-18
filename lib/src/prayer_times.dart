@@ -41,6 +41,12 @@ class PrayerTimes {
 
   final CalculationParameters calculationParameters;
 
+  /// Whether this prayer time calculation occurred during polar night (sun doesn't rise)
+  final bool isPolarNight;
+
+  /// Whether this prayer time calculation occurred during midnight sun (sun doesn't set)  
+  final bool isMidnightSun;
+
   /// Calculate PrayerTimes and Output Local Times By Default.
   /// If you provide utcOffset then it will Output UTC with Offset Applied Times.
   ///
@@ -107,7 +113,9 @@ class PrayerTimes {
   }
 
   PrayerTimes._(this.coordinates, DateTime _date, this.calculationParameters,
-      {this.utcOffset}) {
+      {this.utcOffset}) 
+      : isPolarNight = _calculatePolarNight(coordinates, _date),
+        isMidnightSun = _calculateMidnightSun(coordinates, _date) {
     bool _valid(double value) => !(value.isInfinite || value.isNaN);
 
     late double _value;
@@ -130,16 +138,32 @@ class PrayerTimes {
     var timeComponents = TimeComponents.fromDouble(solarTime.transit);
     final transit = timeComponents.dateComponents(date);
 
-    timeComponents = TimeComponents.fromDouble(solarTime.sunrise);
-    final sunriseComponents = timeComponents.dateComponents(date);
-
-    timeComponents = TimeComponents.fromDouble(solarTime.sunset);
-    final sunsetComponents = timeComponents.dateComponents(date);
+    // Note: isPolarNight and isMidnightSun are now instance variables calculated in constructor
+    
+    DateTime sunriseComponents;
+    DateTime sunsetComponents;
+    
+    if (this.isPolarNight) {
+      // During polar night, use middle of night approximation
+      sunriseComponents = transit.add(Duration(hours: -6));
+    } else {
+      timeComponents = TimeComponents.fromDouble(solarTime.sunrise);
+      sunriseComponents = timeComponents.dateComponents(date);
+    }
+    
+    if (this.isMidnightSun) {
+      // During midnight sun, use middle of day approximation
+      sunsetComponents = transit.add(Duration(hours: 6));
+    } else {
+      timeComponents = TimeComponents.fromDouble(solarTime.sunset);
+      sunsetComponents = timeComponents.dateComponents(date);
+    }
 
     final tomorrow = date.add(Duration(days: 1));
     final tomorrowSolarTime = SolarTime(tomorrow, coordinates);
-    final tomorrowSunriseComponents =
-        TimeComponents.fromDouble(tomorrowSolarTime.sunrise);
+    final DateTime tomorrowSunriseComponents = !_valid(tomorrowSolarTime.sunrise) 
+        ? transit.add(Duration(hours: 18)) // Tomorrow's middle of night approximation
+        : TimeComponents.fromDouble(tomorrowSolarTime.sunrise).dateComponents(tomorrow);
 
     tempDhuhr = transit;
     tempSunrise = sunriseComponents;
@@ -149,15 +173,20 @@ class PrayerTimes {
     tempAsr = timeComponents.dateComponents(date);
 
     // get night length
-    final tomorrowSunrise = tomorrowSunriseComponents.dateComponents(tomorrow);
+    final tomorrowSunrise = tomorrowSunriseComponents;
     final night = tomorrowSunrise.millisecondsSinceEpoch -
         sunsetComponents.millisecondsSinceEpoch;
 
-    _value = solarTime.hourAngle(-calculationParameters.fajrAngle, false);
-
-    if (_valid(_value)) {
-      timeComponents = TimeComponents.fromDouble(_value);
-      tempFajr = timeComponents.dateComponents(date);
+    // Handle Fajr calculation with polar night consideration
+    if (this.isPolarNight) {
+      // During polar night, use specific time-based calculation
+      tempFajr = transit.add(Duration(hours: -12)); // Middle of the night
+    } else {
+      _value = solarTime.hourAngle(-calculationParameters.fajrAngle, false);
+      if (_valid(_value)) {
+        timeComponents = TimeComponents.fromDouble(_value);
+        tempFajr = timeComponents.dateComponents(date);
+      }
     }
 
     if (calculationParameters.method ==
@@ -188,12 +217,18 @@ class PrayerTimes {
       tempIsha = sunsetComponents
           .add(Duration(seconds: calculationParameters.ishaInterval * 60));
     } else {
-      _value = solarTime.hourAngle(-calculationParameters.ishaAngle!, true);
+      // Handle Isha calculation with midnight sun consideration
+      if (this.isMidnightSun) {
+        // During midnight sun, use specific time-based calculation
+        tempIsha = transit.add(Duration(hours: 12)); // Middle of the night
+      } else {
+        _value = solarTime.hourAngle(-calculationParameters.ishaAngle!, true);
 
-      if (calculationParameters.ishaAngle != null && _valid(_value)) {
-        timeComponents = TimeComponents.fromDouble(
-            solarTime.hourAngle(-calculationParameters.ishaAngle!, true));
-        tempIsha = timeComponents.dateComponents(date);
+        if (calculationParameters.ishaAngle != null && _valid(_value)) {
+          timeComponents = TimeComponents.fromDouble(
+              solarTime.hourAngle(-calculationParameters.ishaAngle!, true));
+          tempIsha = timeComponents.dateComponents(date);
+        }
       }
 
       if (calculationParameters.method ==
@@ -220,7 +255,8 @@ class PrayerTimes {
     }
 
     tempMaghrib = sunsetComponents;
-    if (calculationParameters.maghribAngle != null) {
+    if (calculationParameters.maghribAngle != null && !this.isMidnightSun) {
+      // Skip angle-based Maghrib calculation during midnight sun
       final angleBasedMaghrib = TimeComponents.fromDouble(solarTime.hourAngle(
               -1 * calculationParameters.maghribAngle!, true))
           .dateComponents(date);
@@ -403,5 +439,19 @@ class PrayerTimes {
       }
     }
     return daysSinceSolistice;
+  }
+
+  /// Check if the given date and coordinates experience polar night (sun doesn't rise)
+  static bool _calculatePolarNight(Coordinates coordinates, DateTime date) {
+    final solarTime = SolarTime(date, coordinates);
+    bool _valid(double value) => !(value.isInfinite || value.isNaN);
+    return !_valid(solarTime.sunrise);
+  }
+
+  /// Check if the given date and coordinates experience midnight sun (sun doesn't set)
+  static bool _calculateMidnightSun(Coordinates coordinates, DateTime date) {
+    final solarTime = SolarTime(date, coordinates);
+    bool _valid(double value) => !(value.isInfinite || value.isNaN);
+    return !_valid(solarTime.sunset);
   }
 }
