@@ -34,4 +34,8 @@ jobs:
         id: claude
         uses: anthropics/claude-code-action@v0.0.31
         with:
-          anthropic_api_key: ${secrets.ANTHROPIC_AUTH_TOKEN}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
+        env:
+          ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
+          ANTHROPIC_MODEL: ${{ secrets.ANTHROPIC_MODEL }}
