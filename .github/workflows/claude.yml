@@ -17,7 +17,7 @@ jobs:
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
-    runs-on: ubuntu-latest
+    runs-on: gh-runner-adhan-dart
     permissions:
       contents: write
       pull-requests: write
@@ -35,15 +35,3 @@ jobs:
         uses: anthropics/claude-code-action@v0.0.31
         with:
           anthropic_api_key: ${secrets.ANTHROPIC_AUTH_TOKEN}
-          settings: |
-            {
-              "env": {
-                "ANTHROPIC_BASE_URL": "${secrets.ANTHROPIC_BASE_URL}",
-                "ANTHROPIC_AUTH_TOKEN": "${secrets.ANTHROPIC_AUTH_TOKEN}",
-                "ANTHROPIC_MODEL": "${secrets.ANTHROPIC_MODEL}"
-              }
-            }
-        env:
-          ANTHROPIC_BASE_URL: ${secrets.ANTHROPIC_BASE_URL}
-          ANTHROPIC_MODEL: ${secrets.ANTHROPIC_MODEL}
-          ANTHROPIC_AUTH_TOKEN: ${secrets.ANTHROPIC_AUTH_TOKEN}
