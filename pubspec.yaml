@@ -12,6 +12,6 @@ dev_dependencies:
   intl: ^0.17.0
   dart_numerics: ^0.0.5
   enum_to_string: ^2.0.1
-  strings: ^2.0.0
+  strings: ^0.1.2
   path: ^1.8.0
   timezone: ^0.9.2
