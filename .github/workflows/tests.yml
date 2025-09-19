@@ -1,6 +1,7 @@
 name: tests
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master ]
   pull_request:
@@ -8,20 +9,19 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
-    container:
-      image:  google/dart:latest
-
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+    - uses: dart-lang/setup-dart@v1
+      with:
+        sdk: '2.19'  # Last stable Dart 2.x version
     - name: Install dependencies
-      run: pub get
+      run: dart pub get
     - name: Run test with coverage 
-      run: pub run test --coverage coverage
+      run: dart test --coverage coverage
     - name: Generate lcov.info for test coverage
-      run: pub global activate coverage && pub global run coverage:format_coverage -i coverage/test -o coverage/lcov.info --lcov
+      run: dart pub global activate coverage && dart pub global run coverage:format_coverage -i coverage/test -o coverage/lcov.info --lcov
     - name: upload reports to codecov
       run: curl -s https://codecov.io/bash | bash
       env:
