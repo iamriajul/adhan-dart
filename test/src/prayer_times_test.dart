@@ -1,11 +1,7 @@
-// @dart=2.9
-
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:adhan/adhan.dart';
-import 'package:adhan/src/data/calendar_util.dart';
-import 'package:adhan/src/extensions/datetime.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';

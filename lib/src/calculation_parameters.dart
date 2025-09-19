@@ -1,6 +1,7 @@
 import 'calculation_method.dart';
 import 'high_latitude_rule.dart';
 import 'madhab.dart';
+import 'polar_circle_resolution.dart';
 import 'prayer_adjustments.dart';
 
 /// Parameters used for PrayerTime calculation customization
@@ -30,6 +31,9 @@ class CalculationParameters {
   /// Rules for placing bounds on Fajr and Isha for high latitude areas
   HighLatitudeRule highLatitudeRule;
 
+  /// Strategy for resolving prayer times in polar regions where the sun may not rise or set
+  PolarCircleResolution polarCircleResolution;
+
   /// Used to optionally add or subtract a set amount of time from each prayer time
   PrayerAdjustments adjustments;
 
@@ -44,6 +48,7 @@ class CalculationParameters {
       this.ishaInterval = 0,
       this.madhab = Madhab.shafi,
       this.highLatitudeRule = HighLatitudeRule.middle_of_the_night,
+      this.polarCircleResolution = PolarCircleResolution.unresolved,
       PrayerAdjustments? adjustments,
       PrayerAdjustments? methodAdjustments})
       : adjustments = adjustments ?? PrayerAdjustments(),

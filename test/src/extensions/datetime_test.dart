@@ -1,4 +1,4 @@
-import 'package:adhan/src/extensions/datetime.dart';
+import 'package:adhan/adhan.dart';
 import 'package:test/test.dart';
 
 void main() {

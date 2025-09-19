@@ -1,5 +1,4 @@
 import 'package:adhan/adhan.dart';
-import 'package:adhan/src/data/calendar_util.dart';
 import 'package:test/test.dart';
 
 void main() {
