@@ -14,7 +14,7 @@ enum PolarCircleResolution {
 
   /// Leave prayer times undefined when they cannot be calculated due to polar conditions.
   /// This maintains the original behavior before polar circle resolution was introduced.
-  unresolved;
+  unresolved
 }
 
 /// Constants for polar circle resolution calculations
