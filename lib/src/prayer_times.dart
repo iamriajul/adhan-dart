@@ -146,10 +146,10 @@ class PrayerTimes {
     bool resolutionApplied = false;
     PolarCircleResolution? usedStrategy;
 
-    if (!_PolarCircleResolutionUtils.isValidSolarTimePair(initialSolarTime, initialTomorrowSolarTime) &&
+    if (!PolarCircleResolutionUtils.isValidSolarTimePair(initialSolarTime, initialTomorrowSolarTime) &&
         calculationParameters.polarCircleResolution != PolarCircleResolution.unresolved) {
       // Apply resolution strategy
-      final resolutionResult = _PolarCircleResolver.resolve(
+      final resolutionResult = PolarCircleResolver.resolve(
         calculationParameters.polarCircleResolution,
         coordinates,
         date,
@@ -478,3 +478,4 @@ class PrayerTimes {
     }
     return daysSinceSolistice;
   }
+}

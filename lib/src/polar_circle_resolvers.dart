@@ -6,7 +6,7 @@ import 'coordinates.dart';
 /// Implementation of AqrabBalad resolution strategy
 /// Finds the nearest location (by latitude) where valid sunrise/sunset times can be calculated
 class _AqrabBaladResolver {
-  static _PolarCircleResolutionResult? resolve(
+  static PolarCircleResolutionResult? resolve(
     Coordinates originalCoordinates,
     DateTime date,
     double latitude,
@@ -18,11 +18,11 @@ class _AqrabBaladResolver {
     final tomorrowSolarTime = SolarTime(tomorrow, coordinates);
 
     // If solar times are invalid and we're still in polar region
-    if (!_PolarCircleResolutionUtils.isValidSolarTimePair(solarTime, tomorrowSolarTime)) {
+    if (!PolarCircleResolutionUtils.isValidSolarTimePair(solarTime, tomorrowSolarTime)) {
       // Check if we've reached a safe latitude
-      if (latitude.abs() >= _PolarCircleConstants.unsafeLatitude) {
+      if (latitude.abs() >= PolarCircleConstants.unsafeLatitude) {
         // Recursively try 0.5° closer to equator
-        final newLatitude = latitude - (latitude >= 0 ? 1 : -1) * _PolarCircleConstants.latitudeVariationStep;
+        final newLatitude = latitude - (latitude >= 0 ? 1 : -1) * PolarCircleConstants.latitudeVariationStep;
         return resolve(originalCoordinates, date, newLatitude);
       } else {
         // Reached safe latitude but still no valid solar times
@@ -31,7 +31,7 @@ class _AqrabBaladResolver {
     }
 
     // Return resolved values
-    return _PolarCircleResolutionResult(
+    return PolarCircleResolutionResult(
       date: date,
       tomorrow: tomorrow,
       coordinates: coordinates,
@@ -44,14 +44,14 @@ class _AqrabBaladResolver {
 /// Implementation of AqrabYaum resolution strategy
 /// Finds the nearest date (forward or backward in time) where valid sunrise/sunset times can be calculated
 class _AqrabYaumResolver {
-  static _PolarCircleResolutionResult? resolve(
+  static PolarCircleResolutionResult? resolve(
     Coordinates coordinates,
     DateTime originalDate,
     int daysAdded,
     int direction,
   ) {
     // Safety check: don't search more than half a year
-    if (daysAdded > _PolarCircleConstants.maxDaysToSearch) {
+    if (daysAdded > PolarCircleConstants.maxDaysToSearch) {
       return null;
     }
 
@@ -62,7 +62,7 @@ class _AqrabYaumResolver {
     final tomorrowSolarTime = SolarTime(tomorrow, coordinates);
 
     // If still invalid, reverse direction and continue searching
-    if (!_PolarCircleResolutionUtils.isValidSolarTimePair(solarTime, tomorrowSolarTime)) {
+    if (!PolarCircleResolutionUtils.isValidSolarTimePair(solarTime, tomorrowSolarTime)) {
       // Determine next search parameters
       final nextDaysAdded = daysAdded + (direction > 0 ? 0 : 1);
       final nextDirection = -direction;
@@ -71,7 +71,7 @@ class _AqrabYaumResolver {
     }
 
     // Return resolved values (using original date for consistency, but resolved solar times)
-    return _PolarCircleResolutionResult(
+    return PolarCircleResolutionResult(
       date: originalDate, // Keep original date for prayer time calculation
       tomorrow: originalDate.add(Duration(days: 1)),
       coordinates: coordinates,
@@ -82,8 +82,8 @@ class _AqrabYaumResolver {
 }
 
 /// Main resolver that dispatches to the appropriate strategy
-class _PolarCircleResolver {
-  static _PolarCircleResolutionResult? resolve(
+class PolarCircleResolver {
+  static PolarCircleResolutionResult? resolve(
     PolarCircleResolution strategy,
     Coordinates coordinates,
     DateTime date,
